@@ -2,6 +2,7 @@ import { GetServerSideProps } from "next";
 import { prisma } from "../../lib/prisma";
 import { Geist } from "next/font/google";
 import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 import { FormData } from "../types/form";
 import Header from "../components/Header";
 import SeriesIntro from "../components/SeriesIntro";
@@ -127,10 +128,10 @@ export default function UserPage({ user }: Props) {
         throw new Error("Failed to submit form");
       }
 
-      alert("Форма успешно сохранена!");
+      toast.success("Форма успешно сохранена!");
     } catch (error) {
       console.error("Error submitting form:", error);
-      alert("Произошла ошибка при отправке формы. Попробуйте еще раз.");
+      toast.error("Произошла ошибка при отправке формы. Попробуйте еще раз.");
     } finally {
       setIsSubmitting(false);
     }
