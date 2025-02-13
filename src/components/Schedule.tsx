@@ -5,13 +5,13 @@ const Schedule: React.FC = () => {
     <>
       {/* Mobile: schedule */}
       <div className="md:hidden p-6 flex flex-col items-start justify-start">
-        <div className="bg-black text-white px-8 py-4 text-4xl font-black mb-4">
+        <div className="bg-black text-white px-8 py-4 text-4xl font-rubik-one mb-4">
           ПЛАН А:
         </div>
-        <div className="text-gray-500 text-3xl font-bold mb-6">
+        <div className="text-gray-500 text-3xl font-rubik-one mb-6">
           &ldquo;Б&rdquo; быть не должно, но кто знает
         </div>
-        <div className="text-black text-2xl space-y-4">
+        <div className="text-black text-2xl space-y-4 font-cuprum">
           <p>18:00 - собираемся (можно опаздывать, но не сильно)</p>
           <p>18:30 - придет пиздюческий аниматор</p>
           <p>19:00 - пиздуем рисовать граффити</p>
@@ -26,13 +26,13 @@ const Schedule: React.FC = () => {
 
       {/* Desktop: schedule */}
       <div className="hidden md:block p-6 flex flex-col items-start justify-start">
-        <div className="bg-black text-white px-8 py-4 text-4xl font-black mb-4">
+        <div className="bg-black text-white px-8 py-4 text-4xl font-rubik-one mb-4">
           ПЛАН А:
         </div>
-        <div className="text-gray-500 text-3xl font-bold mb-6">
+        <div className="text-gray-500 text-3xl font-rubik-one mb-6">
           &ldquo;Б&rdquo; быть не должно, но кто знает
         </div>
-        <div className="text-black text-2xl space-y-4">
+        <div className="text-black text-2xl space-y-4 font-cuprum">
           <p>18:00 - собираемся (можно опаздывать, но не сильно)</p>
           <p>18:30 - придет пиздюческий аниматор</p>
           <p>19:00 - пиздуем рисовать граффити</p>

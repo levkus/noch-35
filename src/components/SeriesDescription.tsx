@@ -5,10 +5,10 @@ const SeriesDescription: React.FC = () => {
     <>
       {/* Mobile: text */}
       <div className="md:hidden p-6 flex flex-col items-start justify-start relative">
-        <div className="text-[#E85D2A] text-4xl font-black mb-6">
+        <div className="text-[#F75816] text-4xl font-rubik-one mb-6">
           ДЛЯ ОСОБЕННО ВРЕДНЫХ:
         </div>
-        <div className="text-black text-2xl space-y-6">
+        <div className="text-black text-2xl space-y-6 font-cuprum">
           <p>
             Это английский сериал 2011 года, про чуваков, которые напортачили по
             жизни, за что их отправили на отработки. В процессе ебнула молния, и
@@ -27,17 +27,17 @@ const SeriesDescription: React.FC = () => {
             матюкаться при них.
           </p>
         </div>
-        <div className="absolute top-6 right-6 text-black text-4xl font-black">
+        <div className="absolute top-6 right-6 text-black text-4xl font-rubik-one">
           18+
         </div>
       </div>
 
       {/* Desktop: text */}
       <div className="hidden md:block p-6 flex flex-col items-start justify-start relative">
-        <div className="text-[#E85D2A] text-4xl font-black mb-6">
+        <div className="text-[#F75816] text-4xl font-rubik-one mb-6">
           ДЛЯ ОСОБЕННО ВРЕДНЫХ:
         </div>
-        <div className="text-black text-2xl space-y-6">
+        <div className="text-black text-2xl space-y-6 font-cuprum">
           <p>
             Это английский сериал 2011 года, про чуваков, которые напортачили по
             жизни, за что их отправили на отработки. В процессе ебнула молния, и
@@ -56,7 +56,7 @@ const SeriesDescription: React.FC = () => {
             матюкаться при них.
           </p>
         </div>
-        <div className="absolute top-6 right-6 text-black text-4xl font-black">
+        <div className="absolute top-6 right-6 text-black text-4xl font-rubik-one">
           18+
         </div>
       </div>

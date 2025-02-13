@@ -16,7 +16,7 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({
 }) => {
   return (
     <div className="p-6 flex flex-col items-start justify-start md:col-span-2">
-      <div className="bg-black text-white px-8 py-4 text-4xl font-black mb-6 rounded-lg">
+      <div className="bg-black text-white px-8 py-4 text-4xl font-rubik-one mb-6 rounded-lg">
         БЛЯ, А ТЫ ПРИДЕШЬ-ТО?
       </div>
       <div className="space-y-6 w-full max-w-2xl mb-8">
@@ -36,7 +36,7 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({
               }));
             }}
           />
-          <span className="text-2xl text-black">
+          <span className="text-2xl text-black font-cuprum">
             че за тупой вопрос!? конеш я буду!
           </span>
         </label>
@@ -55,7 +55,7 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({
               }));
             }}
           />
-          <span className="text-2xl text-black">
+          <span className="text-2xl text-black font-cuprum">
             и парочку свою приведу, хули
           </span>
         </label>
@@ -74,7 +74,7 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({
               }));
             }}
           />
-          <span className="text-2xl text-black">
+          <span className="text-2xl text-black font-cuprum">
             да и пиздюков тогда девать некуда, тоже возьму
           </span>
         </label>
@@ -95,7 +95,7 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({
               }));
             }}
           />
-          <span className="text-2xl text-black">
+          <span className="text-2xl text-black font-cuprum">
             хотя, ну ее нафиг, мы не придем
           </span>
         </label>
@@ -103,7 +103,7 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({
       <button
         onClick={onSubmit}
         disabled={isSubmitting}
-        className={`bg-[#E85D2A] text-white px-8 py-3 text-2xl font-black rounded-lg ${
+        className={`bg-[#F75816] text-white px-8 py-3 text-2xl font-rubik-one rounded-lg ${
           isSubmitting ? "opacity-50 cursor-not-allowed" : ""
         }`}
       >

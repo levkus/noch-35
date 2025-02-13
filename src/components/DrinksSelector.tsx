@@ -16,14 +16,14 @@ const DrinksSelector: React.FC<DrinksSelectorProps> = ({
 }) => {
   return (
     <>
-      <button className="bg-[#E85D2A] text-white px-8 py-3 text-2xl font-medium rounded-lg mb-4">
+      <button className="bg-[#F75816] text-white px-8 py-3 text-2xl font-rubik-one rounded-lg mb-4">
         Бля, а пьешь ты чё ваще?
       </button>
 
       <div className="relative w-full max-w-2xl mb-4">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="w-full px-6 py-3 text-xl border-2 border-black rounded-lg flex items-center justify-between"
+          className="w-full px-6 py-3 text-xl border-2 border-black rounded-lg flex items-center justify-between font-rubik-one"
         >
           <span className="text-gray-600">
             {formData.drinks.length > 0
@@ -58,7 +58,7 @@ const DrinksSelector: React.FC<DrinksSelectorProps> = ({
             ].map((option) => (
               <label
                 key={option}
-                className="flex items-center gap-3 px-6 py-2 hover:bg-gray-100 cursor-pointer"
+                className="flex items-center gap-3 px-6 py-2 hover:bg-gray-100 cursor-pointer font-rubik-one"
               >
                 <input
                   type="checkbox"
@@ -80,7 +80,7 @@ const DrinksSelector: React.FC<DrinksSelectorProps> = ({
         )}
       </div>
 
-      <div className="text-black text-xl">
+      <div className="text-black text-xl font-cuprum">
         <p>
           Но не только за себя выбирай, про половинку свою не забудь... и детей!
           Они ж сами себе не выберут нихуя. Немощные

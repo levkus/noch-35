@@ -12,6 +12,10 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        "rubik-one": ['"Rubik One"', "sans-serif"],
+        cuprum: ["Cuprum", "sans-serif"],
+      },
     },
   },
   plugins: [],

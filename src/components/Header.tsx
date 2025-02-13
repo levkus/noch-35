@@ -1,30 +1,31 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 
 const Header: React.FC = () => {
   return (
     <>
       {/* Logo Block */}
-      <div className="p-6 flex items-center justify-center">
-        <img src="/misfits.png" alt="Misfits Logo" className="w-auto h-auto" />
+      <div className="flex items-center justify-center px-8 md:px-0 mb-2 m:mb-0">
+        <img src="/misfits.png" alt="Misfits Logo" width="80%" />
       </div>
 
       {/* Date Block */}
-      <div className="p-6 flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center text-[16px] md:text-[24px] lg:text-[32px]">
         {/* Orange header */}
-        <div className="bg-[#E85D2A] text-white px-8 py-3 rounded-lg text-2xl font-medium mb-2 z-10">
+        <div className="bg-[#F75816] text-white px-4 py-1 text-[0.8em] font-cuprum relative -bottom-2 -left-10 z-10">
           День Рождения Ночи
         </div>
 
         {/* Black date block */}
-        <div className="bg-black text-white  py-8 -mt-2 rounded-lg text-6xl font-bold tracking-wider">
+        <div className="bg-black text-white p-4 text-[1.5em] font-rubik-one mb-2">
           7 МАРТА 18:00
         </div>
 
         {/* Address text */}
-        <div className="mt-6 text-center text-2xl">
+        <div className="text-center font-cuprum text-black">
           <div>Тут должен быть адрес,</div>
           <div>но пока его нет,</div>
-          <div className="text-[#E85D2A] underline">
+          <div className="text-[#F75816] underline">
             но где-то районе м. Курская
           </div>
         </div>

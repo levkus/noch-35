@@ -1,6 +1,5 @@
 import { GetServerSideProps } from "next";
 import { prisma } from "../../lib/prisma";
-import { Geist } from "next/font/google";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { FormData } from "../types/form";
@@ -13,10 +12,6 @@ import Graph from "../components/Graph";
 import ClothingInfo from "../components/ClothingInfo";
 import DrinksSelector from "../components/DrinksSelector";
 import AttendanceForm from "../components/AttendanceForm";
-
-const geist = Geist({
-  subsets: ["latin"],
-});
 
 interface Props {
   user: {
@@ -138,8 +133,8 @@ export default function UserPage({ user }: Props) {
   };
 
   return (
-    <div className={`${geist.className} min-h-screen  flex justify-center`}>
-      <div className="grid gap-4 md:grid-cols-2 md:gap-6 w-screen max-w-[1440px] bg-[url('/nobg.jpeg')] bg-[length:100%_100%] bg-center bg-no-repeat">
+    <div className="min-h-screen flex justify-center font-cuprum">
+      <div className="p-6 grid gap-4 md:grid-cols-2 md:gap-6 w-screen max-w-[1440px] bg-[url('/nobg.jpeg')] bg-[length:100%_100%] bg-center bg-no-repeat">
         <Header />
         <SeriesIntro />
         <SeriesDescription />

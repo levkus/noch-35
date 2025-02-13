@@ -5,7 +5,7 @@ const VideoSection: React.FC = () => {
     <>
       {/* Mobile: video */}
       <div className="md:hidden p-6 flex flex-col items-start justify-start relative">
-        <div className="bg-[#E85D2A] text-white px-8 py-3 rounded-lg text-2xl font-medium mb-4">
+        <div className="bg-[#F75816] text-white px-8 py-3 rounded-lg text-2xl font-rubik-one mb-4">
           Вас ждет
         </div>
         <div className="relative w-full aspect-video bg-black rounded-lg overflow-hidden">
@@ -27,7 +27,7 @@ const VideoSection: React.FC = () => {
 
       {/* Desktop: video */}
       <div className="hidden md:block p-6 flex flex-col items-start justify-start relative">
-        <div className="bg-[#E85D2A] text-white px-8 py-3 rounded-lg text-2xl font-medium mb-4">
+        <div className="bg-[#F75816] text-white px-8 py-3 rounded-lg text-2xl font-rubik-one mb-4">
           Вас ждет
         </div>
         <div className="relative w-full aspect-video bg-black rounded-lg overflow-hidden">
