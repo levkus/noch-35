@@ -16,7 +16,7 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({
 }) => {
   return (
     <div className="p-6 flex flex-col items-start justify-start md:col-span-2">
-      <div className="bg-black text-white px-8 py-4 text-4xl font-rubik-one mb-6 rounded-lg">
+      <div className="bg-black text-white px-8 py-4 text-4xl font-rubik-one mb-6 rounded-md">
         БЛЯ, А ТЫ ПРИДЕШЬ-ТО?
       </div>
       <div className="space-y-6 w-full max-w-2xl mb-8">
@@ -103,7 +103,7 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({
       <button
         onClick={onSubmit}
         disabled={isSubmitting}
-        className={`bg-[#F75816] text-white px-8 py-3 text-2xl font-rubik-one rounded-lg ${
+        className={`bg-[#F75816] text-white px-8 py-3 text-2xl font-rubik-one rounded-md ${
           isSubmitting ? "opacity-50 cursor-not-allowed" : ""
         }`}
       >

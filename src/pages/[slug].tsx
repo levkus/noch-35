@@ -133,8 +133,8 @@ export default function UserPage({ user }: Props) {
   };
 
   return (
-    <div className="min-h-screen flex justify-center font-cuprum">
-      <div className="p-6 grid gap-4 md:grid-cols-2 md:gap-6 w-screen max-w-[1440px] bg-[url('/nobg.jpeg')] bg-[length:100%_100%] bg-center bg-no-repeat">
+    <div className="min-h-screen flex justify-center font-cuprum text-[16px] md:text-[18px] lg:text-[20px]">
+      <div className="p-6 grid gap-8 md:grid-cols-2 w-screen max-w-[1440px] bg-[url('/nobg.jpeg')] bg-[length:100%_100%] bg-center bg-no-repeat">
         <Header />
         <SeriesIntro />
         <SeriesDescription />

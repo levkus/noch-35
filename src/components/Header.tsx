@@ -1,33 +1,29 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
+import { Label } from "./Label";
 
-const Header: React.FC = () => {
+const Header = () => {
   return (
     <>
-      {/* Logo Block */}
-      <div className="flex items-center justify-center px-8 md:px-0 mb-2 m:mb-0">
+      <div className="flex items-center justify-center px-8 mt-8 mb-2 md:mt-0 md:px-0 m:mb-0">
         <img src="/misfits.png" alt="Misfits Logo" width="80%" />
       </div>
 
-      {/* Date Block */}
-      <div className="flex flex-col items-center justify-center text-[16px] md:text-[24px] lg:text-[32px]">
-        {/* Orange header */}
-        <div className="bg-[#F75816] text-white px-4 py-1 text-[0.8em] font-cuprum relative -bottom-2 -left-10 z-10">
+      <div className="flex flex-col items-center justify-center">
+        <Label className="-bottom-2 -left-[7vw] xl:-left-[4vw] z-10">
           День Рождения Ночи
-        </div>
+        </Label>
 
-        {/* Black date block */}
-        <div className="bg-black text-white p-4 text-[1.5em] font-rubik-one mb-2">
+        <Label bold color="black" className="text-[2em] md:text-[3em] mb-6">
           7 МАРТА 18:00
-        </div>
+        </Label>
 
-        {/* Address text */}
-        <div className="text-center font-cuprum text-black">
+        <div className="text-[1.2em] md:text-[1.5em] leading-6 md:leading-9 text-center text-black font-cuprum">
           <div>Тут должен быть адрес,</div>
           <div>но пока его нет,</div>
-          <div className="text-[#F75816] underline">
+          <a href="#" className="text-[#F75816] underline">
             но где-то районе м. Курская
-          </div>
+          </a>
         </div>
       </div>
     </>
