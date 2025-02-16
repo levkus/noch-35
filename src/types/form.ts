@@ -1,9 +1,18 @@
 export interface FormData {
-  drinks: string[];
+  drinks: {
+    selections: string[];
+  };
   attendance: {
-    coming: boolean;
-    withPartner: boolean;
-    withKids: boolean;
-    notComing: boolean;
+    selection: string | null;
+  };
+}
+
+export interface GuestData {
+  slug: string;
+  drinks: {
+    selections: string[];
+  };
+  attendance: {
+    selection: string | null;
   };
 }

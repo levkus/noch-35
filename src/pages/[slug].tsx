@@ -8,7 +8,7 @@ import { Schedule } from "../components/Schedule";
 import { AttendanceForm } from "../components/AttendanceForm";
 import { DrinksSelector } from "@/components/DrinksSelector";
 import { Logo } from "@/components/Logo";
-import { Date } from "@/components/Date";
+import { DateSection } from "@/components/DateSection";
 import { Girl } from "@/components/Girl";
 import { Graph } from "@/components/Graph";
 import { Boy } from "@/components/Boy";
@@ -18,64 +18,137 @@ import { PresentsInfo } from "@/components/PresentsInfo";
 interface Props {
   user: {
     slug: string;
-    drinkBeer: boolean;
-    drinkWhiteWine: boolean;
-    drinkRedWine: boolean;
-    drinkStrong: boolean;
-    drinkNonAlcoholic: boolean;
-    isAttending: boolean;
-    withPartner: boolean;
-    withKids: boolean;
-    notComing: boolean;
+    drinks: {
+      selections: string[];
+    };
+    attendance: {
+      selection: string | null;
+    };
+  };
+  content: {
+    id: string;
+    dateAddress: string;
+    dateLink: string;
+    introSemiTransparentText: string;
+    introOpaqueText: string;
+    descriptionHeader: string;
+    descriptionContent: string;
+    videoLink: string;
+    scheduleContent: string;
+    clothingLabel: string;
+    clothingContent: string;
+    presentsLabel: string;
+    presentsContent: string;
+    wishlistLink: string;
+    drinksLabel: string;
+    drinksContent: string;
+    availableDrinks: { id: string; label: string }[];
+    attendanceLabel: string;
+    attendanceOptions: { id: string; label: string }[];
+    submitButtonText: string;
+    createdAt: string;
+    updatedAt: string;
   };
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const slug = params?.slug as string;
 
-  const user = await prisma.user.findUnique({
-    where: { slug },
-    select: {
-      slug: true,
-      drinkBeer: true,
-      drinkWhiteWine: true,
-      drinkRedWine: true,
-      drinkStrong: true,
-      drinkNonAlcoholic: true,
-      isAttending: true,
-      withPartner: true,
-      withKids: true,
-      notComing: true,
-    },
-  });
+  const [user, content] = await Promise.all([
+    prisma.guest.findUnique({
+      where: { slug },
+      select: {
+        slug: true,
+        drinks: true,
+        attendance: true,
+      },
+    }),
+    prisma.content.findFirst(),
+  ]);
+
+  if (!content) {
+    await prisma.content.create({
+      data: {},
+    });
+  }
+
+  const now = new Date().toISOString();
+  const defaultContent = {
+    id: "new",
+    dateAddress: "",
+    dateLink: "",
+    introSemiTransparentText: "",
+    introOpaqueText: "",
+    descriptionHeader: "",
+    descriptionContent: "",
+    videoLink: "",
+    scheduleContent: "",
+    clothingLabel: "",
+    clothingContent: "",
+    presentsLabel: "",
+    presentsContent: "",
+    wishlistLink: "",
+    drinksLabel: "",
+    drinksContent: "",
+    availableDrinks: [],
+    attendanceLabel: "",
+    attendanceOptions: [],
+    submitButtonText: "",
+    createdAt: now,
+    updatedAt: now,
+  };
 
   return {
     props: {
-      user: user || {
-        slug,
-        drinkBeer: false,
-        drinkWhiteWine: false,
-        drinkRedWine: false,
-        drinkStrong: false,
-        drinkNonAlcoholic: false,
-        isAttending: false,
-        withPartner: false,
-        withKids: false,
-        notComing: false,
-      },
+      user: user
+        ? {
+            slug: user.slug,
+            drinks:
+              typeof user.drinks === "string"
+                ? JSON.parse(user.drinks)
+                : user.drinks,
+            attendance:
+              typeof user.attendance === "string"
+                ? JSON.parse(user.attendance)
+                : user.attendance,
+          }
+        : {
+            slug,
+            drinks: { selections: [] },
+            attendance: { selection: null },
+          },
+      content: content
+        ? {
+            ...content,
+            createdAt: content.createdAt.toISOString(),
+            updatedAt: content.updatedAt.toISOString(),
+            availableDrinks:
+              typeof content.availableDrinks === "string"
+                ? JSON.parse(content.availableDrinks)
+                : content.availableDrinks,
+            attendanceOptions:
+              typeof content.attendanceOptions === "string"
+                ? JSON.parse(content.attendanceOptions)
+                : content.attendanceOptions,
+          }
+        : defaultContent,
     },
   };
 };
 
-export default function UserPage({ user }: Props) {
+export default function UserPage({ user, content }: Props) {
   return (
     <FormProvider userSlug={user.slug} initialData={user}>
-      <PageContent />
+      <PageContent content={content} />
     </FormProvider>
   );
 }
 
-const PageContent: React.FC = () => {
+interface PageContentProps {
+  content: Props["content"];
+}
+
+const PageContent: React.FC<PageContentProps> = ({ content }) => {
   return (
     <div className="min-h-screen">
       {/* Mobile */}
@@ -84,44 +157,79 @@ const PageContent: React.FC = () => {
           <Logo className="max-w-[70vw]" />
         </div>
         <div className="flex justify-center pb-[2em]">
-          <Date center />
+          <DateSection
+            center
+            address={content.dateAddress}
+            link={content.dateLink}
+          />
         </div>
         <div className="flex">
-          <SeriesIntro />
+          <SeriesIntro
+            semiTransparentText={content.introSemiTransparentText}
+            opaqueText={content.introOpaqueText}
+          />
           <Girl />
         </div>
         <div>
-          <SeriesDescription />
+          <SeriesDescription
+            header={content.descriptionHeader}
+            content={content.descriptionContent}
+          />
         </div>
         <div>
-          <VideoSection />
+          <VideoSection videoLink={content.videoLink} />
         </div>
         <div>
-          <Schedule />
+          <Schedule content={content.scheduleContent} />
         </div>
         <Graph />
-        <ClothingInfo className="mb-[2em]" />
-        <PresentsInfo className="mb-[2em]" />
-        <DrinksSelector className="flex flex-col mb-[2em]" />
-        <AttendanceForm />
+        <ClothingInfo
+          className="mb-[2em]"
+          label={content.clothingLabel}
+          content={content.clothingContent}
+        />
+        <PresentsInfo
+          className="mb-[2em]"
+          label={content.presentsLabel}
+          content={content.presentsContent}
+          wishlistLink={content.wishlistLink}
+        />
+        <DrinksSelector
+          className="flex flex-col mb-[2em]"
+          label={content.drinksLabel}
+          content={content.drinksContent}
+          availableDrinks={content.availableDrinks}
+        />
+        <AttendanceForm
+          label={content.attendanceLabel}
+          options={content.attendanceOptions}
+          submitButtonText={content.submitButtonText}
+        />
       </div>
 
       {/* Desktop */}
       <div className="hidden md:block text-[1.65vw] px-[3em]">
         <div className="flex justify-between items-center py-[4em]">
           <Logo className="w-[24em]" />
-          <Date />
+          <DateSection address={content.dateAddress} link={content.dateLink} />
         </div>
         <div className="flex items-center justify-between gap-[2em] mb-[4em]">
           <div>
-            <SeriesIntro className="text-[1.3em]/[1.25] mb-[1.25em]" />
-            <SeriesDescription />
+            <SeriesIntro
+              className="text-[1.3em]/[1.25] mb-[1.25em]"
+              semiTransparentText={content.introSemiTransparentText}
+              opaqueText={content.introOpaqueText}
+            />
+            <SeriesDescription
+              header={content.descriptionHeader}
+              content={content.descriptionContent}
+            />
           </div>
           <Girl className="w-[22em] flex-shrink-0" />
         </div>
         <div className="flex justify-between items-center gap-8 mb-[1.35em]">
-          <VideoSection className="basis-1/2" />
-          <Schedule className="basis-1/2" />
+          <VideoSection className="basis-1/2" videoLink={content.videoLink} />
+          <Schedule className="basis-1/2" content={content.scheduleContent} />
         </div>
 
         <div className="max-w-[80%] m-auto mb-[2em]">
@@ -130,13 +238,31 @@ const PageContent: React.FC = () => {
         <div className="flex items-start gap-8">
           <Boy className="-ml-[3em] w-[30em]" />
           <div>
-            <ClothingInfo className="mb-[2em]" />
-            <PresentsInfo className="mb-[2em]" />
-            <DrinksSelector className="flex flex-col mb-[2em]" />
+            <ClothingInfo
+              className="mb-[2em]"
+              label={content.clothingLabel}
+              content={content.clothingContent}
+            />
+            <PresentsInfo
+              className="mb-[2em]"
+              label={content.presentsLabel}
+              content={content.presentsContent}
+              wishlistLink={content.wishlistLink}
+            />
+            <DrinksSelector
+              className="flex flex-col mb-[2em]"
+              label={content.drinksLabel}
+              content={content.drinksContent}
+              availableDrinks={content.availableDrinks}
+            />
           </div>
         </div>
         <div className="pb-[2em]">
-          <AttendanceForm />
+          <AttendanceForm
+            label={content.attendanceLabel}
+            options={content.attendanceOptions}
+            submitButtonText={content.submitButtonText}
+          />
         </div>
       </div>
     </div>

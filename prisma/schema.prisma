@@ -7,23 +7,59 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model Guest {
   id        String   @id @default(cuid())
   slug      String   @unique
   createdAt DateTime @default(now())
   
-  // Drinks selections
-  drinkBeer          Boolean @default(false)
-  drinkWhiteWine     Boolean @default(false)
-  drinkRedWine       Boolean @default(false)
-  drinkStrong        Boolean @default(false)
-  drinkNonAlcoholic  Boolean @default(false)
-  
-  // Attendance flags
-  isAttending    Boolean @default(false)
-  withPartner    Boolean @default(false)
-  withKids       Boolean @default(false)
-  notComing      Boolean @default(false)
+  // Drinks and attendance stored as JSON
+  drinks     Json    @default("{\"selections\":[]}")
+  attendance Json    @default("{\"selection\":null}")
   
   updatedAt DateTime @updatedAt
+}
+
+model Content {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Date section
+  dateAddress String @default("")
+  dateLink    String @default("")
+
+  // Series Intro section
+  introSemiTransparentText String @default("")
+  introOpaqueText         String @default("")
+
+  // Series Description section
+  descriptionHeader String @default("")
+  descriptionContent String @default("")
+
+  // Video section
+  videoLink String @default("")
+
+  // Schedule section
+  scheduleContent String @default("")
+
+  // Clothing info section
+  clothingLabel   String @default("")
+  clothingContent String @default("")
+
+  // Presents info section
+  presentsLabel   String @default("")
+  presentsContent String @default("")
+  wishlistLink    String @default("")
+
+  // Drinks selector section
+  drinksLabel   String @default("")
+  drinksContent String @default("")
+  availableDrinks Json @default("[]")
+
+  // Attendance form section
+  attendanceLabel    String @default("")
+  attendanceOptions  Json   @default("[]")
+  submitButtonText   String @default("")
+
+  @@map("content")
 }

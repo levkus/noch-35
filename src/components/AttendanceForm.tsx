@@ -3,69 +3,42 @@ import { Checkbox } from "./Checkbox";
 import { Label } from "./Label";
 import { useForm } from "../context/FormContext";
 
-export const AttendanceForm: React.FC = () => {
+interface AttendanceFormProps {
+  label?: string;
+  options?: { id: string; label: string }[];
+  submitButtonText?: string;
+}
+
+export const AttendanceForm: React.FC<AttendanceFormProps> = ({
+  label = "БЛЯ, А ТЫ ПРИДЕШЬ-ТО?",
+  options = [],
+  submitButtonText = "ПОНЯЛ, ПРИНЯЛ, УЕБАЛ",
+}) => {
   const { formData, setFormData, isSubmitting, handleSubmit } = useForm();
+
+  const handleOptionChange = (option: string, checked: boolean) => {
+    setFormData((prev) => ({
+      ...prev,
+      attendance: {
+        selection: checked ? option : null,
+      },
+    }));
+  };
+
   return (
     <div className="flex flex-col">
       <Label bold color="black" className="mb-[0.5em] mr-auto">
-        БЛЯ, А ТЫ ПРИДЕШЬ-ТО?
+        {label}
       </Label>
       <div className="space-y-[0.5em] mb-[0.5em]">
-        <Checkbox
-          checked={formData.attendance.coming}
-          onChange={(checked) => {
-            setFormData((prev) => ({
-              ...prev,
-              attendance: {
-                ...prev.attendance,
-                coming: checked,
-                notComing: false,
-              },
-            }));
-          }}
-          label="че за тупой вопрос!? конеш я буду!"
-        />
-        <Checkbox
-          checked={formData.attendance.withPartner}
-          onChange={(checked) => {
-            setFormData((prev) => ({
-              ...prev,
-              attendance: {
-                ...prev.attendance,
-                withPartner: checked,
-              },
-            }));
-          }}
-          label="и парочку свою приведу, хули"
-        />
-        <Checkbox
-          checked={formData.attendance.withKids}
-          onChange={(checked) => {
-            setFormData((prev) => ({
-              ...prev,
-              attendance: {
-                ...prev.attendance,
-                withKids: checked,
-              },
-            }));
-          }}
-          label="да и пиздюков тогда девать некуда, тоже возьму"
-        />
-        <Checkbox
-          checked={formData.attendance.notComing}
-          onChange={(checked) => {
-            setFormData((prev) => ({
-              ...prev,
-              attendance: {
-                coming: false,
-                withPartner: false,
-                withKids: false,
-                notComing: checked,
-              },
-            }));
-          }}
-          label="хотя, ну ее нафиг, мы не придем"
-        />
+        {options.map((option, index) => (
+          <Checkbox
+            key={index}
+            checked={formData.attendance.selection === option.id}
+            onChange={(checked) => handleOptionChange(option.id, checked)}
+            label={option.label}
+          />
+        ))}
       </div>
       <button
         onClick={handleSubmit}
@@ -74,7 +47,7 @@ export const AttendanceForm: React.FC = () => {
           isSubmitting ? "opacity-50 cursor-not-allowed" : ""
         }`}
       >
-        {isSubmitting ? "ОТПРАВЛЯЕМ..." : "ПОНЯЛ, ПРИНЯЛ, УЕБАЛ"}
+        {isSubmitting ? "ОТПРАВЛЯЕМ..." : submitButtonText}
       </button>
     </div>
   );

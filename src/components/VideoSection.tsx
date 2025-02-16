@@ -1,7 +1,15 @@
 import React from "react";
 import { Label } from "./Label";
 
-export const VideoSection = ({ className }: { className?: string }) => {
+interface VideoSectionProps {
+  className?: string;
+  videoLink?: string;
+}
+
+export const VideoSection = ({
+  className,
+  videoLink = "/promo.mp4",
+}: VideoSectionProps) => {
   return (
     <div className={`relative ${className} flex flex-col`}>
       <Label className="z-10 -top-[1.25em] mr-auto absolute left-[2vw]">
@@ -13,7 +21,7 @@ export const VideoSection = ({ className }: { className?: string }) => {
           controls
           poster="/video-poster.jpg"
         >
-          <source src="/promo.mp4" type="video/mp4" />
+          <source src={videoLink} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className="absolute inset-0 flex items-center justify-center bg-black/30">

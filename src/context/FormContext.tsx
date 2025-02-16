@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
-import { FormData } from "../types/form";
+import { FormData, GuestData } from "../types/form";
 import toast from "react-hot-toast";
 
 interface FormContextType {
@@ -7,17 +7,7 @@ interface FormContextType {
   setFormData: React.Dispatch<React.SetStateAction<FormData>>;
   isSubmitting: boolean;
   handleSubmit: () => Promise<void>;
-  initializeForm: (userData: {
-    drinkBeer: boolean;
-    drinkWhiteWine: boolean;
-    drinkRedWine: boolean;
-    drinkStrong: boolean;
-    drinkNonAlcoholic: boolean;
-    isAttending: boolean;
-    withPartner: boolean;
-    withKids: boolean;
-    notComing: boolean;
-  }) => void;
+  initializeForm: (userData: GuestData) => void;
 }
 
 const FormContext = createContext<FormContextType | undefined>(undefined);
@@ -25,17 +15,7 @@ const FormContext = createContext<FormContextType | undefined>(undefined);
 interface FormProviderProps {
   children: React.ReactNode;
   userSlug: string;
-  initialData: {
-    drinkBeer: boolean;
-    drinkWhiteWine: boolean;
-    drinkRedWine: boolean;
-    drinkStrong: boolean;
-    drinkNonAlcoholic: boolean;
-    isAttending: boolean;
-    withPartner: boolean;
-    withKids: boolean;
-    notComing: boolean;
-  };
+  initialData: GuestData;
 }
 
 export const FormProvider: React.FC<FormProviderProps> = ({
@@ -45,46 +25,14 @@ export const FormProvider: React.FC<FormProviderProps> = ({
 }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState<FormData>(() => ({
-    drinks: [
-      ...(initialData.drinkBeer ? ["пиво"] : []),
-      ...(initialData.drinkWhiteWine ? ["белое вино"] : []),
-      ...(initialData.drinkRedWine ? ["красное вино"] : []),
-      ...(initialData.drinkStrong ? ["крепкое"] : []),
-      ...(initialData.drinkNonAlcoholic ? ["безалкогольное"] : []),
-    ],
-    attendance: {
-      coming: initialData.isAttending,
-      withPartner: initialData.withPartner,
-      withKids: initialData.withKids,
-      notComing: initialData.notComing,
-    },
+    drinks: initialData.drinks,
+    attendance: initialData.attendance,
   }));
 
-  const initializeForm = (userData: {
-    drinkBeer: boolean;
-    drinkWhiteWine: boolean;
-    drinkRedWine: boolean;
-    drinkStrong: boolean;
-    drinkNonAlcoholic: boolean;
-    isAttending: boolean;
-    withPartner: boolean;
-    withKids: boolean;
-    notComing: boolean;
-  }) => {
+  const initializeForm = (userData: GuestData) => {
     setFormData({
-      drinks: [
-        ...(userData.drinkBeer ? ["пиво"] : []),
-        ...(userData.drinkWhiteWine ? ["белое вино"] : []),
-        ...(userData.drinkRedWine ? ["красное вино"] : []),
-        ...(userData.drinkStrong ? ["крепкое"] : []),
-        ...(userData.drinkNonAlcoholic ? ["безалкогольное"] : []),
-      ],
-      attendance: {
-        coming: userData.isAttending,
-        withPartner: userData.withPartner,
-        withKids: userData.withKids,
-        notComing: userData.notComing,
-      },
+      drinks: userData.drinks,
+      attendance: userData.attendance,
     });
   };
 
@@ -99,15 +47,8 @@ export const FormProvider: React.FC<FormProviderProps> = ({
         },
         body: JSON.stringify({
           slug: userSlug,
-          drinkBeer: formData.drinks.includes("пиво"),
-          drinkWhiteWine: formData.drinks.includes("белое вино"),
-          drinkRedWine: formData.drinks.includes("красное вино"),
-          drinkStrong: formData.drinks.includes("крепкое"),
-          drinkNonAlcoholic: formData.drinks.includes("безалкогольное"),
-          isAttending: formData.attendance.coming,
-          withPartner: formData.attendance.withPartner,
-          withKids: formData.attendance.withKids,
-          notComing: formData.attendance.notComing,
+          drinks: formData.drinks,
+          attendance: formData.attendance,
         }),
       });
 

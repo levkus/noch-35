@@ -1,7 +1,17 @@
 import React from "react";
 import { Label } from "./Label";
 
-export const Date = ({ center = false }: { center?: boolean }) => {
+interface DateSectionProps {
+  center?: boolean;
+  address?: string;
+  link?: string;
+}
+
+export const DateSection = ({
+  center = false,
+  address = "Тут должен быть адрес,\nно пока его нет",
+  link = "но где-то районе м. Курская",
+}: DateSectionProps) => {
   return (
     <>
       <div className="flex flex-col">
@@ -22,10 +32,11 @@ export const Date = ({ center = false }: { center?: boolean }) => {
             center ? "text-center" : "text-left"
           }`}
         >
-          <div>Тут должен быть адрес,</div>
-          <div>но пока его нет,</div>
-          <a href="#" className="text-[#F75816] underline">
-            но где-то районе м. Курская
+          {address.split("\n").map((line, index) => (
+            <div key={index}>{line}</div>
+          ))}
+          <a href={link} className="text-[#F75816] underline">
+            {link}
           </a>
         </div>
       </div>

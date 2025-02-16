@@ -9,50 +9,25 @@ export default async function handler(
   }
 
   try {
-    const {
-      slug,
-      drinkBeer,
-      drinkWhiteWine,
-      drinkRedWine,
-      drinkStrong,
-      drinkNonAlcoholic,
-      isAttending,
-      withPartner,
-      withKids,
-      notComing,
-    } = req.body;
+    const { slug, drinks, attendance } = req.body;
 
-    // Use the URL slug to create or update the user
-    const user = await prisma.user.upsert({
+    // Use the URL slug to create or update the guest
+    const guest = await prisma.guest.upsert({
       where: { slug },
       update: {
-        drinkBeer,
-        drinkWhiteWine,
-        drinkRedWine,
-        drinkStrong,
-        drinkNonAlcoholic,
-        isAttending,
-        withPartner,
-        withKids,
-        notComing,
+        drinks,
+        attendance,
       },
       create: {
         slug,
-        drinkBeer,
-        drinkWhiteWine,
-        drinkRedWine,
-        drinkStrong,
-        drinkNonAlcoholic,
-        isAttending,
-        withPartner,
-        withKids,
-        notComing,
+        drinks,
+        attendance,
       },
     });
 
     return res.status(200).json({
       message: "Form submitted successfully",
-      slug: user.slug,
+      slug: guest.slug,
     });
   } catch (error) {
     console.error("Error handling form submission:", error);
