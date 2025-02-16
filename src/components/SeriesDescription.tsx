@@ -1,7 +1,7 @@
 import React from "react";
 import { Text } from "./Text";
 
-const SeriesDescription: React.FC = () => {
+export const SeriesDescription: React.FC = () => {
   return (
     <div>
       <div className="flex justify-between items-center text-[1.3em]/[1.5] mb-[0.5em] font-rubik-one w-[100%]">
@@ -30,5 +30,3 @@ const SeriesDescription: React.FC = () => {
     </div>
   );
 };
-
-export default SeriesDescription;

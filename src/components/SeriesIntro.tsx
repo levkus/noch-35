@@ -1,6 +1,6 @@
 import React from "react";
 
-const SeriesIntro = ({ className }: { className?: string }) => {
+export const SeriesIntro = ({ className }: { className?: string }) => {
   return (
     <div
       className={`font-rubik-one text-black flex flex-col items-start ${className}`}
@@ -10,5 +10,3 @@ const SeriesIntro = ({ className }: { className?: string }) => {
     </div>
   );
 };
-
-export default SeriesIntro;

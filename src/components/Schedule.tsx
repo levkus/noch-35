@@ -2,7 +2,7 @@ import React from "react";
 import { Text } from "./Text";
 import { Label } from "./Label";
 
-const Schedule = ({ className }: { className?: string }) => {
+export const Schedule = ({ className }: { className?: string }) => {
   return (
     <div className={className}>
       <div className="flex gap-[1em] items-center mb-[1em]">
@@ -31,5 +31,3 @@ const Schedule = ({ className }: { className?: string }) => {
     </div>
   );
 };
-
-export default Schedule;

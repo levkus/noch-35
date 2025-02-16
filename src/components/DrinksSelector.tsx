@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Label } from "./Label";
 import { Text } from "./Text";
-import Checkbox from "./Checkbox";
+import { Checkbox } from "./Checkbox";
 import { useForm } from "../context/FormContext";
 
 interface DrinksSelectorProps {
   className?: string;
 }
 
-const DrinksSelector: React.FC<DrinksSelectorProps> = ({ className }) => {
+export const DrinksSelector: React.FC<DrinksSelectorProps> = ({
+  className,
+}) => {
   const { formData, setFormData } = useForm();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -102,5 +104,3 @@ const DrinksSelector: React.FC<DrinksSelectorProps> = ({ className }) => {
     </div>
   );
 };
-
-export default DrinksSelector;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Label } from "./Label";
 
-const VideoSection = ({ className }: { className?: string }) => {
+export const VideoSection = ({ className }: { className?: string }) => {
   return (
     <div className={`relative ${className} flex flex-col`}>
       <Label className="z-10 -top-[1.25em] mr-auto absolute left-[2vw]">
@@ -25,5 +25,3 @@ const VideoSection = ({ className }: { className?: string }) => {
     </div>
   );
 };
-
-export default VideoSection;

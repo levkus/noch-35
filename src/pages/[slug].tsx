@@ -1,11 +1,12 @@
 import { GetServerSideProps } from "next";
 import { prisma } from "../../lib/prisma";
 import { FormProvider } from "../context/FormContext";
-import SeriesIntro from "../components/SeriesIntro";
-import SeriesDescription from "../components/SeriesDescription";
-import VideoSection from "../components/VideoSection";
-import Schedule from "../components/Schedule";
-import AttendanceForm from "../components/AttendanceForm";
+import { SeriesIntro } from "../components/SeriesIntro";
+import { SeriesDescription } from "../components/SeriesDescription";
+import { VideoSection } from "../components/VideoSection";
+import { Schedule } from "../components/Schedule";
+import { AttendanceForm } from "../components/AttendanceForm";
+import { DrinksSelector } from "@/components/DrinksSelector";
 import { Logo } from "@/components/Logo";
 import { Date } from "@/components/Date";
 import { Girl } from "@/components/Girl";
@@ -13,7 +14,6 @@ import { Graph } from "@/components/Graph";
 import { Boy } from "@/components/Boy";
 import { ClothingInfo } from "@/components/ClothingInfo";
 import { PresentsInfo } from "@/components/PresentsInfo";
-import DrinksSelector from "@/components/DrinksSelector";
 
 interface Props {
   user: {

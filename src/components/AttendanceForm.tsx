@@ -1,9 +1,9 @@
 import React from "react";
-import Checkbox from "./Checkbox";
+import { Checkbox } from "./Checkbox";
 import { Label } from "./Label";
 import { useForm } from "../context/FormContext";
 
-const AttendanceForm: React.FC = () => {
+export const AttendanceForm: React.FC = () => {
   const { formData, setFormData, isSubmitting, handleSubmit } = useForm();
   return (
     <div className="flex flex-col">
@@ -79,5 +79,3 @@ const AttendanceForm: React.FC = () => {
     </div>
   );
 };
-
-export default AttendanceForm;
