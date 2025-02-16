@@ -13,13 +13,13 @@ export const Date = ({ center = false }: { center?: boolean }) => {
         <Label
           bold
           color="black"
-          className="text-[2em] md:text-[3em] mb-[0.25em]"
+          className="text-[2em] md:text-[3em] mb-[0.5em]"
         >
           7 МАРТА 18:00
         </Label>
 
         <div
-          className={`relative text-[1.5em] md:text-[1.8em]/[1.2] left-[2vw]  text-black ${
+          className={`relative text-[1.5em]/[1.2] md:text-[1.8em]/[1.2] left-[2vw]  text-black ${
             center ? "text-center" : "text-left"
           }`}
         >

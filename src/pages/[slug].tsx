@@ -14,6 +14,8 @@ import { Girl } from "@/components/Girl";
 import { Graph } from "@/components/Graph";
 import { Boy } from "@/components/Boy";
 import { ClothingInfo } from "@/components/ClothingInfo";
+import { PresentsInfo } from "@/components/PresentsInfo";
+import DrinksSelector from "@/components/DrinksSelector";
 
 interface Props {
   user: {
@@ -134,21 +136,35 @@ export default function UserPage({ user }: Props) {
   };
 
   return (
-    <div className="min-h-screen bg-[url('/nobg.jpeg')] bg-[length:100%_100%] bg-center bg-no-repeat">
+    <div className="min-h-screen">
       {/* Mobile */}
-      <div className="md:hidden text-[16px]">
-        <Logo />
-        <Date />
-        <SeriesIntro />
-        <SeriesDescription />
-        <VideoSection />
-        <Schedule />
+      <div className="md:hidden text-[4vw] px-[2em]">
+        <div className="flex justify-center pt-[2em] pb-[0em]">
+          <Logo className="max-w-[70vw]" />
+        </div>
+        <div className="flex justify-center pb-[2em]">
+          <Date center />
+        </div>
+        <div className="flex">
+          <SeriesIntro />
+          <Girl />
+        </div>
+        <div>
+          <SeriesDescription />
+        </div>
+        <div>
+          <VideoSection />
+        </div>
+        <div>
+          <Schedule />
+        </div>
         <Graph />
-        <ClothingInfo
+        <ClothingInfo className="mb-[2em]" />
+        <PresentsInfo className="mb-[2em]" />
+        <DrinksSelector
           formData={formData}
           setFormData={setFormData}
-          isSubmitting={isSubmitting}
-          onSubmit={handleSubmit}
+          className="flex flex-col mb-[2em]"
         />
 
         <AttendanceForm
@@ -180,14 +196,17 @@ export default function UserPage({ user }: Props) {
         <div className="max-w-[80%] m-auto mb-[2em]">
           <Graph />
         </div>
-        <div className="flex items-end">
+        <div className="flex items-start gap-8">
           <Boy className="-ml-[3em] w-[30em]" />
-          <ClothingInfo
-            formData={formData}
-            setFormData={setFormData}
-            isSubmitting={isSubmitting}
-            onSubmit={handleSubmit}
-          />
+          <div>
+            <ClothingInfo className="mb-[2em]" />
+            <PresentsInfo className="mb-[2em]" />
+            <DrinksSelector
+              formData={formData}
+              setFormData={setFormData}
+              className="flex flex-col mb-[2em]"
+            />
+          </div>
         </div>
         <div className="pb-[2em]">
           <AttendanceForm

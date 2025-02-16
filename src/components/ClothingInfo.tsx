@@ -1,27 +1,17 @@
 import React from "react";
 import { Label } from "./Label";
 import { Text } from "./Text";
-import DrinksSelector from "./DrinksSelector";
-import { FormData } from "../types/form";
 
 interface ClothingInfoProps {
   className?: string;
-  formData: FormData;
-  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
-  isSubmitting: boolean;
-  onSubmit: () => Promise<void>;
 }
 
-export const ClothingInfo = ({
-  className,
-  formData,
-  setFormData,
-}: ClothingInfoProps) => {
+export const ClothingInfo = ({ className }: ClothingInfoProps) => {
   return (
     <div className={`flex flex-col ${className}`}>
       <Label className="mb-[0.5em] mr-auto">Шматье</Label>
 
-      <div className="mb-[2em] space-y-[0.5em]">
+      <div className="space-y-[0.5em]">
         <Text>
           Ты ж понял, что мы будем стены разукрашивать!? Вот форму зека мы тебе
           нашли, а как ты от мороза и краски будешь защищать остальное - сам
@@ -37,28 +27,6 @@ export const ClothingInfo = ({
           память хранить, хуле.
         </Text>
       </div>
-
-      <Label className="mb-[0.5em] mr-auto">Точняк, про подарки забыла</Label>
-
-      <div className="mb-[2em] space-y-[0.5em]">
-        <Text>
-          Чё угодно из моего вишлиста. Не из вишлиста могу выкинуть,
-          предупреждаю сразу. Я эта, выебистая!
-        </Text>
-        <Text>
-          Только выбирай не по моим хотелкам, а что себе купил бы. Ну, примерно
-          хотя бы. Чтоб от души было.
-        </Text>
-        <a href="#" className="text-[#F75816] underline">
-          Вишлист тут
-        </a>
-      </div>
-
-      <DrinksSelector
-        formData={formData}
-        setFormData={setFormData}
-        className="flex flex-col mb-[2em]"
-      />
     </div>
   );
 };
