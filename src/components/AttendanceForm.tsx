@@ -10,9 +10,9 @@ interface AttendanceFormProps {
 }
 
 export const AttendanceForm: React.FC<AttendanceFormProps> = ({
-  label = "БЛЯ, А ТЫ ПРИДЕШЬ-ТО?",
+  label,
   options = [],
-  submitButtonText = "ПОНЯЛ, ПРИНЯЛ, УЕБАЛ",
+  submitButtonText,
 }) => {
   const { formData, setFormData, isSubmitting, handleSubmit } = useForm();
 

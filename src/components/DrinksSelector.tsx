@@ -13,10 +13,8 @@ interface DrinksSelectorProps {
 
 export const DrinksSelector: React.FC<DrinksSelectorProps> = ({
   className,
-  label = "Бля, а пьешь ты чё ваще?",
-  content = `Но не только за себя выбирай, про половинку свою не забудь... и детей! Они ж сами себе не выберут нихуя. Немощные
-
-Хавать фастудину всякую будем, отбросы-ж. Шаурма-хуюрма, хот-доги всякие. Так что для супернежных, сам покупаю жратву`,
+  label,
+  content = "",
   availableDrinks = [],
 }) => {
   const { formData, setFormData } = useForm();

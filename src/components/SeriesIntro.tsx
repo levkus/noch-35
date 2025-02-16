@@ -8,8 +8,8 @@ interface Props {
 
 export const SeriesIntro = ({
   className,
-  semiTransparentText = "ЭТО НЕ НОЧЬ!",
-  opaqueText = "ЕСЛИ ТЫ НЕ СМОТРЕЛ ЭТОТ СЕРИАЛ - ПОСМОТРИ, ХОТЯ БЫ ТРЕЙЛЕР",
+  semiTransparentText,
+  opaqueText,
 }: Props) => {
   return (
     <div

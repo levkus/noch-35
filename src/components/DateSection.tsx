@@ -9,8 +9,8 @@ interface DateSectionProps {
 
 export const DateSection = ({
   center = false,
-  address = "Тут должен быть адрес,\nно пока его нет",
-  link = "но где-то районе м. Курская",
+  address,
+  link,
 }: DateSectionProps) => {
   return (
     <>
@@ -24,7 +24,7 @@ export const DateSection = ({
           color="black"
           className="text-[2em] md:text-[3em] mb-[0.5em]"
         >
-          7 МАРТА 18:00
+          {address}
         </Label>
 
         <div
@@ -32,12 +32,14 @@ export const DateSection = ({
             center ? "text-center" : "text-left"
           }`}
         >
-          {address.split("\n").map((line, index) => (
+          {address?.split("\n").map((line, index) => (
             <div key={index}>{line}</div>
           ))}
-          <a href={link} className="text-[#F75816] underline">
-            {link}
-          </a>
+          {link && (
+            <a href={link} className="text-[#F75816] underline">
+              {link}
+            </a>
+          )}
         </div>
       </div>
     </>

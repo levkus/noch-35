@@ -11,11 +11,9 @@ interface PresentsInfoProps {
 
 export const PresentsInfo = ({
   className,
-  label = "Точняк, про подарки забыла",
-  content = `Чё угодно из моего вишлиста. Не из вишлиста могу выкинуть, предупреждаю сразу. Я эта, выебистая!
-
-Только выбирай не по моим хотелкам, а что себе купил бы. Ну, примерно хотя бы. Чтоб от души было.`,
-  wishlistLink = "#",
+  label,
+  content = "",
+  wishlistLink,
 }: PresentsInfoProps) => {
   return (
     <div className={`flex flex-col ${className}`}>
@@ -25,9 +23,11 @@ export const PresentsInfo = ({
         {content.split("\n\n").map((paragraph, index) => (
           <Text key={index}>{paragraph}</Text>
         ))}
-        <a href={wishlistLink} className="text-[#F75816] underline">
-          Вишлист тут
-        </a>
+        {wishlistLink && (
+          <a href={wishlistLink} className="text-[#F75816] underline">
+            Вишлист тут
+          </a>
+        )}
       </div>
     </div>
   );

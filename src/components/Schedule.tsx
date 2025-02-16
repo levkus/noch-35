@@ -7,15 +7,7 @@ interface ScheduleProps {
   content?: string;
 }
 
-export const Schedule = ({
-  className,
-  content = `18:00 - собираемся (можно опаздывать, но не сильно)
-18:30 - придет пиздюческий аниматор
-19:00 - пиздуем рисовать граффити
-21:30 - кончаем (хе-хе) с граффити и валим в лофт
-21:45 - отрываемся
-00:00 - расходимся по кроваткам (да пихдю я! едем дальше тусить ко мне на хату или в барчик какой-нибудь. время ж детское, накуй)`,
-}: ScheduleProps) => {
+export const Schedule = ({ className, content = "" }: ScheduleProps) => {
   return (
     <div className={className}>
       <div className="flex gap-[1em] items-center mb-[1em]">

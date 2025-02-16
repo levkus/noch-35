@@ -6,10 +6,7 @@ interface VideoSectionProps {
   videoLink?: string;
 }
 
-export const VideoSection = ({
-  className,
-  videoLink = "/promo.mp4",
-}: VideoSectionProps) => {
+export const VideoSection = ({ className, videoLink }: VideoSectionProps) => {
   return (
     <div className={`relative ${className} flex flex-col`}>
       <Label className="z-10 -top-[1.25em] mr-auto absolute left-[2vw]">
