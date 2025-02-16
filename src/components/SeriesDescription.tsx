@@ -1,14 +1,14 @@
 import React from "react";
 import { Text } from "./Text";
 
-const Content = () => {
+const SeriesDescription: React.FC = () => {
   return (
-    <>
-      <div className="flex justify-between items-center text-[1em] leading-7 mb-2 font-rubik-one w-[100%]">
+    <div>
+      <div className="flex justify-between items-center text-[1.3em]/[1.5] mb-[0.5em] font-rubik-one w-[100%]">
         <div className="text-[#F75816]">ДЛЯ ОСОБЕННО ВРЕДНЫХ:</div>
         <div className="text-black">18+</div>
       </div>
-      <div className="space-y-2">
+      <div className="space-y-[0.5em]">
         <Text>
           Это английский сериал 2011 года, про чуваков, которые напортачили по
           жизни, за что их отправили на отработки. В процессе ебнула молния, и у
@@ -27,23 +27,7 @@ const Content = () => {
           при них.
         </Text>
       </div>
-    </>
-  );
-};
-
-const SeriesDescription: React.FC = () => {
-  return (
-    <>
-      {/* Mobile: text */}
-      <div className="md:hidden">
-        <Content />
-      </div>
-
-      {/* Desktop: text */}
-      <div className="hidden md:block ">
-        <Content />
-      </div>
-    </>
+    </div>
   );
 };
 

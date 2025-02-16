@@ -2,16 +2,22 @@ import React from "react";
 import { Text } from "./Text";
 import { Label } from "./Label";
 
-const Content = () => {
+const Schedule = ({ className }: { className?: string }) => {
   return (
-    <>
-      <Label color="black" bold className="text-[2em] md:text-[3em] mb-6">
-        ПЛАН А:
-      </Label>
-      <div className="mb-6 text-black opacity-50 text-l font-rubik-one">
-        &ldquo;Б&rdquo; быть не должно, но кто знает
+    <div className={className}>
+      <div className="flex gap-[1em] items-center mb-[1em]">
+        <Label
+          color="black"
+          bold
+          className="text-[2em] md:text-[1.5em] flex-shrink-0"
+        >
+          ПЛАН А:
+        </Label>
+        <div className=" text-black opacity-50 text-[1.35em]/[0.9] font-rubik-one">
+          &ldquo;Б&rdquo; быть не должно, но кто знает
+        </div>
       </div>
-      <div className="space-y-2">
+      <div className="space-y-[0.25em]">
         <Text>18:00 - собираемся (можно опаздывать, но не сильно)</Text>
         <Text>18:30 - придет пиздюческий аниматор</Text>
         <Text>19:00 - пиздуем рисовать граффити</Text>
@@ -22,23 +28,7 @@ const Content = () => {
           на хату или в барчик какой-нибудь. время ж детское, накуй)
         </Text>
       </div>
-    </>
-  );
-};
-
-const Schedule: React.FC = () => {
-  return (
-    <>
-      {/* Mobile: schedule */}
-      <div className="flex flex-col items-start justify-start md:hidden">
-        <Content />
-      </div>
-
-      {/* Desktop: schedule */}
-      <div className="flex-col items-start justify-start hidden md:flex">
-        <Content />
-      </div>
-    </>
+    </div>
   );
 };
 

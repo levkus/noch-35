@@ -1,30 +1,52 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FormData } from "../types/form";
 import { Label } from "./Label";
+import { Text } from "./Text";
+import Checkbox from "./Checkbox";
 
 interface DrinksSelectorProps {
-  isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
   formData: FormData;
   setFormData: React.Dispatch<React.SetStateAction<FormData>>;
+  className?: string;
 }
 
 const DrinksSelector: React.FC<DrinksSelectorProps> = ({
-  isOpen,
-  setIsOpen,
   formData,
   setFormData,
+  className,
 }) => {
-  return (
-    <div>
-      <Label className="w-auto mb-4">Бля, а пьешь ты чё ваще?</Label>
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-      <div className="relative mb-4">
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <div className={className}>
+      <Label color="black" className="mb-[1em] mr-auto">
+        Бля, а пьешь ты чё ваще?
+      </Label>
+
+      <div ref={dropdownRef} className="relative mb-[1em] mr-auto">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center justify-between w-full px-6 py-3 text-xl border-2 border-black rounded-md font-rubik-one"
+          className="flex min-w-[280px] items-center justify-between px-[0.75em] py-[0.375em] text-[1em] border-2 border-black rounded-sm bg-white"
         >
-          <span className="text-gray-600">
+          <span className="text-gray-600 mr-[0.5em]">
             {formData.drinks.length > 0
               ? formData.drinks.join(", ")
               : "Выбери что пить будешь"}
@@ -47,7 +69,7 @@ const DrinksSelector: React.FC<DrinksSelectorProps> = ({
         </button>
 
         {isOpen && (
-          <div className="absolute z-10 w-full mt-1 bg-white border-2 border-black rounded-md shadow-lg">
+          <div className="absolute z-10 w-[280px] mt-1 bg-white border-2 border-black rounded-md shadow-lg">
             {[
               "пиво",
               "белое вино",
@@ -55,39 +77,35 @@ const DrinksSelector: React.FC<DrinksSelectorProps> = ({
               "крепкое",
               "безалкогольное",
             ].map((option) => (
-              <label
-                key={option}
-                className="flex items-center gap-3 px-6 py-2 cursor-pointer hover:bg-gray-100 font-rubik-one"
-              >
-                <input
-                  type="checkbox"
+              <div key={option} className="px-2 py-1 hover:bg-gray-100">
+                <Checkbox
                   checked={formData.drinks.includes(option)}
-                  onChange={() => {
+                  onChange={(checked) => {
                     setFormData((prev) => ({
                       ...prev,
-                      drinks: prev.drinks.includes(option)
-                        ? prev.drinks.filter((item) => item !== option)
-                        : [...prev.drinks, option],
+                      drinks: checked
+                        ? [...prev.drinks, option]
+                        : prev.drinks.filter((item) => item !== option),
                     }));
                   }}
-                  className="w-5 h-5 accent-black"
+                  label={option}
+                  className="font-rubik-one"
                 />
-                <span className="text-xl">{option}</span>
-              </label>
+              </div>
             ))}
           </div>
         )}
       </div>
 
-      <div className="text-xl text-black font-cuprum">
-        <p>
+      <div className="space-y-[0.5em]">
+        <Text>
           Но не только за себя выбирай, про половинку свою не забудь... и детей!
           Они ж сами себе не выберут нихуя. Немощные
-        </p>
-        <p>
+        </Text>
+        <Text>
           Хавать фастудину всякую будем, отбросы-ж. Шаурма-хуюрма, хот-доги
           всякие. Так что для супернежных, сам покупаю жратву
-        </p>
+        </Text>
       </div>
     </div>
   );

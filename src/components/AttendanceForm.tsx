@@ -1,5 +1,6 @@
 import React from "react";
 import { FormData } from "../types/form";
+import Checkbox from "./Checkbox";
 
 interface AttendanceFormProps {
   formData: FormData;
@@ -15,90 +16,66 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({
   onSubmit,
 }) => {
   return (
-    <div className="p-6 flex flex-col items-start justify-start md:col-span-2">
+    <div className="flex flex-col items-start justify-start md:col-span-2">
       <div className="bg-black text-white px-8 py-4 text-4xl font-rubik-one mb-6 rounded-md">
         БЛЯ, А ТЫ ПРИДЕШЬ-ТО?
       </div>
       <div className="space-y-6 w-full max-w-2xl mb-8">
-        <label className="flex items-center gap-4 cursor-pointer">
-          <input
-            type="checkbox"
-            className="w-8 h-8 accent-black"
-            checked={formData.attendance.coming}
-            onChange={(e) => {
-              setFormData((prev) => ({
-                ...prev,
-                attendance: {
-                  ...prev.attendance,
-                  coming: e.target.checked,
-                  notComing: false,
-                },
-              }));
-            }}
-          />
-          <span className="text-2xl text-black font-cuprum">
-            че за тупой вопрос!? конеш я буду!
-          </span>
-        </label>
-        <label className="flex items-center gap-4 cursor-pointer">
-          <input
-            type="checkbox"
-            className="w-8 h-8 accent-black"
-            checked={formData.attendance.withPartner}
-            onChange={(e) => {
-              setFormData((prev) => ({
-                ...prev,
-                attendance: {
-                  ...prev.attendance,
-                  withPartner: e.target.checked,
-                },
-              }));
-            }}
-          />
-          <span className="text-2xl text-black font-cuprum">
-            и парочку свою приведу, хули
-          </span>
-        </label>
-        <label className="flex items-center gap-4 cursor-pointer">
-          <input
-            type="checkbox"
-            className="w-8 h-8 accent-black"
-            checked={formData.attendance.withKids}
-            onChange={(e) => {
-              setFormData((prev) => ({
-                ...prev,
-                attendance: {
-                  ...prev.attendance,
-                  withKids: e.target.checked,
-                },
-              }));
-            }}
-          />
-          <span className="text-2xl text-black font-cuprum">
-            да и пиздюков тогда девать некуда, тоже возьму
-          </span>
-        </label>
-        <label className="flex items-center gap-4 cursor-pointer">
-          <input
-            type="checkbox"
-            className="w-8 h-8 accent-black"
-            checked={formData.attendance.notComing}
-            onChange={(e) => {
-              setFormData((prev) => ({
-                ...prev,
-                attendance: {
-                  coming: false,
-                  withPartner: false,
-                  withKids: false,
-                  notComing: e.target.checked,
-                },
-              }));
-            }}
-          />
-          <span className="text-2xl text-black font-cuprum">
-            хотя, ну ее нафиг, мы не придем
-          </span>
-        </label>
+        <Checkbox
+          checked={formData.attendance.coming}
+          onChange={(checked) => {
+            setFormData((prev) => ({
+              ...prev,
+              attendance: {
+                ...prev.attendance,
+                coming: checked,
+                notComing: false,
+              },
+            }));
+          }}
+          label="че за тупой вопрос!? конеш я буду!"
+        />
+        <Checkbox
+          checked={formData.attendance.withPartner}
+          onChange={(checked) => {
+            setFormData((prev) => ({
+              ...prev,
+              attendance: {
+                ...prev.attendance,
+                withPartner: checked,
+              },
+            }));
+          }}
+          label="и парочку свою приведу, хули"
+        />
+        <Checkbox
+          checked={formData.attendance.withKids}
+          onChange={(checked) => {
+            setFormData((prev) => ({
+              ...prev,
+              attendance: {
+                ...prev.attendance,
+                withKids: checked,
+              },
+            }));
+          }}
+          label="да и пиздюков тогда девать некуда, тоже возьму"
+        />
+        <Checkbox
+          checked={formData.attendance.notComing}
+          onChange={(checked) => {
+            setFormData((prev) => ({
+              ...prev,
+              attendance: {
+                coming: false,
+                withPartner: false,
+                withKids: false,
+                notComing: checked,
+              },
+            }));
+          }}
+          label="хотя, ну ее нафиг, мы не придем"
+        />
       </div>
       <button
         onClick={onSubmit}

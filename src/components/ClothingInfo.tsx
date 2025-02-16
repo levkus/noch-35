@@ -1,13 +1,29 @@
 import React from "react";
 import { Label } from "./Label";
 import { Text } from "./Text";
+import DrinksSelector from "./DrinksSelector";
+import { FormData } from "../types/form";
 
-const ClothingInfo: React.FC = () => {
+interface ClothingInfoProps {
+  className?: string;
+  formData: FormData;
+  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
+  isSubmitting: boolean;
+  onSubmit: () => Promise<void>;
+}
+
+export const ClothingInfo = ({
+  className,
+  formData,
+  setFormData,
+}: ClothingInfoProps) => {
   return (
-    <div className="pl-[120px] md:pl-[400px] flex flex-col items-start justify-start md:col-span-2 bg-[url('/boy.png')] bg-[length:100px_auto] md:bg-[length:400px_auto] bg-no-repeat bg-left-bottom">
-      <Label className="mb-4">Шматье</Label>
+    <div className={`flex flex-col ${className}`}>
+      <Label color="black" className="mb-[0.5em] mr-auto">
+        Шматье
+      </Label>
 
-      <div className="mb-4 space-y-2">
+      <div className="mb-[2em] space-y-[0.5em]">
         <Text>
           Ты ж понял, что мы будем стены разукрашивать!? Вот форму зека мы тебе
           нашли, а как ты от мороза и краски будешь защищать остальное - сам
@@ -24,9 +40,11 @@ const ClothingInfo: React.FC = () => {
         </Text>
       </div>
 
-      <Label className="mb-4">Точняк, про подарки забыла</Label>
+      <Label color="black" className="mb-[0.5em] mr-auto">
+        Точняк, про подарки забыла
+      </Label>
 
-      <div className="mb-8 space-y-2">
+      <div className="mb-[2em] space-y-[0.5em]">
         <Text>
           Чё угодно из моего вишлиста. Не из вишлиста могу выкинуть,
           предупреждаю сразу. Я эта, выебистая!
@@ -39,8 +57,12 @@ const ClothingInfo: React.FC = () => {
           Вишлист тут
         </a>
       </div>
+
+      <DrinksSelector
+        formData={formData}
+        setFormData={setFormData}
+        className="flex flex-col mb-[2em]"
+      />
     </div>
   );
 };
-
-export default ClothingInfo;

@@ -4,30 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  .date,
-  .series-intro,
-  .label {
-    font-family: "Rubik One", sans-serif;
-  }
-}
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
