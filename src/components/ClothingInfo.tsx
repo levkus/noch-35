@@ -19,9 +19,7 @@ export const ClothingInfo = ({
 }: ClothingInfoProps) => {
   return (
     <div className={`flex flex-col ${className}`}>
-      <Label color="black" className="mb-[0.5em] mr-auto">
-        Шматье
-      </Label>
+      <Label className="mb-[0.5em] mr-auto">Шматье</Label>
 
       <div className="mb-[2em] space-y-[0.5em]">
         <Text>
@@ -40,9 +38,7 @@ export const ClothingInfo = ({
         </Text>
       </div>
 
-      <Label color="black" className="mb-[0.5em] mr-auto">
-        Точняк, про подарки забыла
-      </Label>
+      <Label className="mb-[0.5em] mr-auto">Точняк, про подарки забыла</Label>
 
       <div className="mb-[2em] space-y-[0.5em]">
         <Text>

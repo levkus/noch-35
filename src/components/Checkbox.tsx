@@ -14,14 +14,16 @@ const Checkbox: React.FC<CheckboxProps> = ({
   className = "",
 }) => {
   return (
-    <label className={`flex items-center gap-4 cursor-pointer ${className}`}>
+    <label
+      className={`flex items-center gap-[0.5em] cursor-pointer ${className}`}
+    >
       <input
         type="checkbox"
         className="w-[1.5em] h-[1.5em] accent-black"
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
       />
-      <span className="text-2xl text-black font-cuprum">{label}</span>
+      <span className="text-[1.2em] text-black">{label}</span>
     </label>
   );
 };

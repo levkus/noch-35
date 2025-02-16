@@ -37,14 +37,12 @@ const DrinksSelector: React.FC<DrinksSelectorProps> = ({
 
   return (
     <div className={className}>
-      <Label color="black" className="mb-[1em] mr-auto">
-        Бля, а пьешь ты чё ваще?
-      </Label>
+      <Label className="mb-[0.5em] mr-auto">Бля, а пьешь ты чё ваще?</Label>
 
-      <div ref={dropdownRef} className="relative mb-[1em] mr-auto">
+      <div ref={dropdownRef} className="relative mb-[0.5em] mr-auto">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex min-w-[280px] items-center justify-between px-[0.75em] py-[0.375em] text-[1em] border-2 border-black rounded-sm bg-white"
+          className="flex min-w-[280px] items-center justify-between px-[0.5em] py-[0.25em] text-[1em] border-2 border-black rounded-sm bg-white"
         >
           <span className="text-gray-600 mr-[0.5em]">
             {formData.drinks.length > 0
@@ -69,7 +67,7 @@ const DrinksSelector: React.FC<DrinksSelectorProps> = ({
         </button>
 
         {isOpen && (
-          <div className="absolute z-10 w-[280px] mt-1 bg-white border-2 border-black rounded-md shadow-lg">
+          <div className="absolute z-10 w-[280px] mt-[0.25em] bg-white border-2 border-black rounded-md">
             {[
               "пиво",
               "белое вино",
@@ -77,7 +75,7 @@ const DrinksSelector: React.FC<DrinksSelectorProps> = ({
               "крепкое",
               "безалкогольное",
             ].map((option) => (
-              <div key={option} className="px-2 py-1 hover:bg-gray-100">
+              <div key={option} className="p-[0.25em] hover:bg-gray-100">
                 <Checkbox
                   checked={formData.drinks.includes(option)}
                   onChange={(checked) => {
@@ -89,7 +87,6 @@ const DrinksSelector: React.FC<DrinksSelectorProps> = ({
                     }));
                   }}
                   label={option}
-                  className="font-rubik-one"
                 />
               </div>
             ))}

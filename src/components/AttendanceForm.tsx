@@ -1,6 +1,7 @@
 import React from "react";
 import { FormData } from "../types/form";
 import Checkbox from "./Checkbox";
+import { Label } from "./Label";
 
 interface AttendanceFormProps {
   formData: FormData;
@@ -16,11 +17,11 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({
   onSubmit,
 }) => {
   return (
-    <div className="flex flex-col items-start justify-start md:col-span-2">
-      <div className="bg-black text-white px-8 py-4 text-4xl font-rubik-one mb-6 rounded-md">
+    <div className="flex flex-col">
+      <Label bold color="black" className="mb-[0.5em] mr-auto">
         БЛЯ, А ТЫ ПРИДЕШЬ-ТО?
-      </div>
-      <div className="space-y-6 w-full max-w-2xl mb-8">
+      </Label>
+      <div className="space-y-[0.5em] mb-[0.5em]">
         <Checkbox
           checked={formData.attendance.coming}
           onChange={(checked) => {
@@ -80,7 +81,7 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({
       <button
         onClick={onSubmit}
         disabled={isSubmitting}
-        className={`bg-[#F75816] text-white px-8 py-3 text-2xl font-rubik-one rounded-md ${
+        className={`bg-white text-[#F75816] border-[#F75816] border-2 px-[0.75em] py-[0.375em] font-rubik-one rounded-md mr-auto ${
           isSubmitting ? "opacity-50 cursor-not-allowed" : ""
         }`}
       >
