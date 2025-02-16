@@ -1,20 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
-import { FormData } from "../types/form";
 import { Label } from "./Label";
 import { Text } from "./Text";
 import Checkbox from "./Checkbox";
+import { useForm } from "../context/FormContext";
 
 interface DrinksSelectorProps {
-  formData: FormData;
-  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
   className?: string;
 }
 
-const DrinksSelector: React.FC<DrinksSelectorProps> = ({
-  formData,
-  setFormData,
-  className,
-}) => {
+const DrinksSelector: React.FC<DrinksSelectorProps> = ({ className }) => {
+  const { formData, setFormData } = useForm();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 

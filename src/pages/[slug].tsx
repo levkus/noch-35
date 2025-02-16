@@ -1,8 +1,6 @@
 import { GetServerSideProps } from "next";
 import { prisma } from "../../lib/prisma";
-import { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { FormData } from "../types/form";
+import { FormProvider } from "../context/FormContext";
 import SeriesIntro from "../components/SeriesIntro";
 import SeriesDescription from "../components/SeriesDescription";
 import VideoSection from "../components/VideoSection";
@@ -70,71 +68,14 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 };
 
 export default function UserPage({ user }: Props) {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState<FormData>({
-    drinks: [],
-    attendance: {
-      coming: false,
-      withPartner: false,
-      withKids: false,
-      notComing: false,
-    },
-  });
+  return (
+    <FormProvider userSlug={user.slug} initialData={user}>
+      <PageContent />
+    </FormProvider>
+  );
+}
 
-  useEffect(() => {
-    setFormData({
-      drinks: [
-        ...(user.drinkBeer ? ["пиво"] : []),
-        ...(user.drinkWhiteWine ? ["белое вино"] : []),
-        ...(user.drinkRedWine ? ["красное вино"] : []),
-        ...(user.drinkStrong ? ["крепкое"] : []),
-        ...(user.drinkNonAlcoholic ? ["безалкогольное"] : []),
-      ],
-      attendance: {
-        coming: user.isAttending,
-        withPartner: user.withPartner,
-        withKids: user.withKids,
-        notComing: user.notComing,
-      },
-    });
-  }, [user]);
-
-  const handleSubmit = async () => {
-    try {
-      setIsSubmitting(true);
-
-      const response = await fetch("/api/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          slug: user.slug,
-          drinkBeer: formData.drinks.includes("пиво"),
-          drinkWhiteWine: formData.drinks.includes("белое вино"),
-          drinkRedWine: formData.drinks.includes("красное вино"),
-          drinkStrong: formData.drinks.includes("крепкое"),
-          drinkNonAlcoholic: formData.drinks.includes("безалкогольное"),
-          isAttending: formData.attendance.coming,
-          withPartner: formData.attendance.withPartner,
-          withKids: formData.attendance.withKids,
-          notComing: formData.attendance.notComing,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to submit form");
-      }
-
-      toast.success("Форма успешно сохранена!");
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      toast.error("Произошла ошибка при отправке формы. Попробуйте еще раз.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
+const PageContent: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Mobile */}
@@ -161,18 +102,8 @@ export default function UserPage({ user }: Props) {
         <Graph />
         <ClothingInfo className="mb-[2em]" />
         <PresentsInfo className="mb-[2em]" />
-        <DrinksSelector
-          formData={formData}
-          setFormData={setFormData}
-          className="flex flex-col mb-[2em]"
-        />
-
-        <AttendanceForm
-          formData={formData}
-          setFormData={setFormData}
-          isSubmitting={isSubmitting}
-          onSubmit={handleSubmit}
-        />
+        <DrinksSelector className="flex flex-col mb-[2em]" />
+        <AttendanceForm />
       </div>
 
       {/* Desktop */}
@@ -201,22 +132,13 @@ export default function UserPage({ user }: Props) {
           <div>
             <ClothingInfo className="mb-[2em]" />
             <PresentsInfo className="mb-[2em]" />
-            <DrinksSelector
-              formData={formData}
-              setFormData={setFormData}
-              className="flex flex-col mb-[2em]"
-            />
+            <DrinksSelector className="flex flex-col mb-[2em]" />
           </div>
         </div>
         <div className="pb-[2em]">
-          <AttendanceForm
-            formData={formData}
-            setFormData={setFormData}
-            isSubmitting={isSubmitting}
-            onSubmit={handleSubmit}
-          />
+          <AttendanceForm />
         </div>
       </div>
     </div>
   );
-}
+};

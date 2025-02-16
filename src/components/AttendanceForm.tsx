@@ -1,21 +1,10 @@
 import React from "react";
-import { FormData } from "../types/form";
 import Checkbox from "./Checkbox";
 import { Label } from "./Label";
+import { useForm } from "../context/FormContext";
 
-interface AttendanceFormProps {
-  formData: FormData;
-  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
-  isSubmitting: boolean;
-  onSubmit: () => Promise<void>;
-}
-
-const AttendanceForm: React.FC<AttendanceFormProps> = ({
-  formData,
-  setFormData,
-  isSubmitting,
-  onSubmit,
-}) => {
+const AttendanceForm: React.FC = () => {
+  const { formData, setFormData, isSubmitting, handleSubmit } = useForm();
   return (
     <div className="flex flex-col">
       <Label bold color="black" className="mb-[0.5em] mr-auto">
@@ -79,7 +68,7 @@ const AttendanceForm: React.FC<AttendanceFormProps> = ({
         />
       </div>
       <button
-        onClick={onSubmit}
+        onClick={handleSubmit}
         disabled={isSubmitting}
         className={`bg-white text-[#F75816] border-[#F75816] border-2 px-[0.75em] py-[0.375em] font-rubik-one rounded-md mr-auto ${
           isSubmitting ? "opacity-50 cursor-not-allowed" : ""
