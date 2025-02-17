@@ -1,12 +1,13 @@
 import React from "react";
 import { Label } from "./Label";
+import { useContent } from "../context/ContentContext";
 
 interface VideoSectionProps {
   className?: string;
-  videoLink?: string;
 }
 
-export const VideoSection = ({ className, videoLink }: VideoSectionProps) => {
+export const VideoSection = ({ className }: VideoSectionProps) => {
+  const { videoLink } = useContent();
   return (
     <div className={`relative ${className} flex flex-col`}>
       <Label className="z-10 -top-[1.25em] mr-auto absolute left-[2vw]">

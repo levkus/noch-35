@@ -1,20 +1,19 @@
 import React from "react";
 import { Label } from "./Label";
 import { Text } from "./Text";
+import { useContent } from "../context/ContentContext";
 
 interface PresentsInfoProps {
   className?: string;
-  label?: string;
-  content?: string;
-  wishlistLink?: string;
 }
 
-export const PresentsInfo = ({
-  className,
-  label,
-  content = "",
-  wishlistLink,
-}: PresentsInfoProps) => {
+export const PresentsInfo = ({ className }: PresentsInfoProps) => {
+  const {
+    presentsLabel: label,
+    presentsContent: content = "",
+    wishlistLink,
+    wishlistLinkLabel,
+  } = useContent();
   return (
     <div className={`flex flex-col ${className}`}>
       <Label className="mb-[0.5em] mr-auto">{label}</Label>
@@ -25,7 +24,7 @@ export const PresentsInfo = ({
         ))}
         {wishlistLink && (
           <a href={wishlistLink} className="text-[#F75816] underline">
-            Вишлист тут
+            {wishlistLinkLabel || "Вишлист тут"}
           </a>
         )}
       </div>

@@ -1,15 +1,10 @@
 import React from "react";
 import { Text } from "./Text";
+import { useContent } from "../context/ContentContext";
 
-interface SeriesDescriptionProps {
-  header?: string;
-  content?: string;
-}
-
-export const SeriesDescription: React.FC<SeriesDescriptionProps> = ({
-  header,
-  content = "",
-}) => {
+export const SeriesDescription: React.FC = () => {
+  const { descriptionHeader: header, descriptionContent: content = "" } =
+    useContent();
   return (
     <div>
       <div className="flex justify-between items-center text-[1.3em]/[1.5] mb-[0.5em] font-rubik-one w-[100%]">

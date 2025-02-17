@@ -2,18 +2,14 @@ import React from "react";
 import { Checkbox } from "./Checkbox";
 import { Label } from "./Label";
 import { useForm } from "../context/FormContext";
+import { useContent } from "../context/ContentContext";
 
-interface AttendanceFormProps {
-  label?: string;
-  options?: { id: string; label: string }[];
-  submitButtonText?: string;
-}
-
-export const AttendanceForm: React.FC<AttendanceFormProps> = ({
-  label,
-  options = [],
-  submitButtonText,
-}) => {
+export const AttendanceForm: React.FC = () => {
+  const {
+    attendanceLabel: label,
+    attendanceOptions: options = [],
+    submitButtonText,
+  } = useContent();
   const { formData, setFormData, isSubmitting, handleSubmit } = useForm();
 
   const handleOptionChange = (option: string, checked: boolean) => {

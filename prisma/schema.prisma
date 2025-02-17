@@ -27,6 +27,7 @@ model Content {
   // Date section
   dateAddress String @default("")
   dateLink    String @default("")
+  dateLinkLabel String @default("")
 
   // Series Intro section
   introSemiTransparentText String @default("")
@@ -50,6 +51,7 @@ model Content {
   presentsLabel   String @default("")
   presentsContent String @default("")
   wishlistLink    String @default("")
+  wishlistLinkLabel String @default("")
 
   // Drinks selector section
   drinksLabel   String @default("")

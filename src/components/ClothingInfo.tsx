@@ -1,18 +1,14 @@
 import React from "react";
 import { Label } from "./Label";
 import { Text } from "./Text";
+import { useContent } from "../context/ContentContext";
 
 interface ClothingInfoProps {
   className?: string;
-  label?: string;
-  content?: string;
 }
 
-export const ClothingInfo = ({
-  className,
-  label,
-  content = "",
-}: ClothingInfoProps) => {
+export const ClothingInfo = ({ className }: ClothingInfoProps) => {
+  const { clothingLabel: label, clothingContent: content = "" } = useContent();
   return (
     <div className={`flex flex-col ${className}`}>
       <Label className="mb-[0.5em] mr-auto">{label}</Label>

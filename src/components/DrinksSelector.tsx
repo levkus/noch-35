@@ -3,20 +3,20 @@ import { Label } from "./Label";
 import { Text } from "./Text";
 import { Checkbox } from "./Checkbox";
 import { useForm } from "../context/FormContext";
+import { useContent } from "../context/ContentContext";
 
 interface DrinksSelectorProps {
   className?: string;
-  label?: string;
-  content?: string;
-  availableDrinks?: { id: string; label: string }[];
 }
 
 export const DrinksSelector: React.FC<DrinksSelectorProps> = ({
   className,
-  label,
-  content = "",
-  availableDrinks = [],
 }) => {
+  const {
+    drinksLabel: label,
+    drinksContent: content = "",
+    availableDrinks = [],
+  } = useContent();
   const { formData, setFormData } = useForm();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);

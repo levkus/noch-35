@@ -1,6 +1,7 @@
 import { GetServerSideProps } from "next";
 import { prisma } from "../../lib/prisma";
 import { FormProvider } from "../context/FormContext";
+import { ContentProvider } from "../context/ContentContext";
 import { SeriesIntro } from "../components/SeriesIntro";
 import { SeriesDescription } from "../components/SeriesDescription";
 import { VideoSection } from "../components/VideoSection";
@@ -29,6 +30,7 @@ interface Props {
     id: string;
     dateAddress: string;
     dateLink: string;
+    dateLinkLabel: string;
     introSemiTransparentText: string;
     introOpaqueText: string;
     descriptionHeader: string;
@@ -40,6 +42,7 @@ interface Props {
     presentsLabel: string;
     presentsContent: string;
     wishlistLink: string;
+    wishlistLinkLabel: string;
     drinksLabel: string;
     drinksContent: string;
     availableDrinks: { id: string; label: string }[];
@@ -77,6 +80,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     id: "new",
     dateAddress: "",
     dateLink: "",
+    dateLinkLabel: "",
     introSemiTransparentText: "",
     introOpaqueText: "",
     descriptionHeader: "",
@@ -88,6 +92,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     presentsLabel: "",
     presentsContent: "",
     wishlistLink: "",
+    wishlistLinkLabel: "",
     drinksLabel: "",
     drinksContent: "",
     availableDrinks: [],
@@ -139,16 +144,14 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 export default function UserPage({ user, content }: Props) {
   return (
     <FormProvider userSlug={user.slug} initialData={user}>
-      <PageContent content={content} />
+      <ContentProvider content={content}>
+        <PageContent />
+      </ContentProvider>
     </FormProvider>
   );
 }
 
-interface PageContentProps {
-  content: Props["content"];
-}
-
-const PageContent: React.FC<PageContentProps> = ({ content }) => {
+const PageContent: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Mobile */}
@@ -157,79 +160,44 @@ const PageContent: React.FC<PageContentProps> = ({ content }) => {
           <Logo className="max-w-[70vw]" />
         </div>
         <div className="flex justify-center pb-[2em]">
-          <DateSection
-            center
-            address={content.dateAddress}
-            link={content.dateLink}
-          />
+          <DateSection center />
         </div>
         <div className="flex">
-          <SeriesIntro
-            semiTransparentText={content.introSemiTransparentText}
-            opaqueText={content.introOpaqueText}
-          />
+          <SeriesIntro />
           <Girl />
         </div>
         <div>
-          <SeriesDescription
-            header={content.descriptionHeader}
-            content={content.descriptionContent}
-          />
+          <SeriesDescription />
         </div>
         <div>
-          <VideoSection videoLink={content.videoLink} />
+          <VideoSection />
         </div>
         <div>
-          <Schedule content={content.scheduleContent} />
+          <Schedule />
         </div>
         <Graph />
-        <ClothingInfo
-          className="mb-[2em]"
-          label={content.clothingLabel}
-          content={content.clothingContent}
-        />
-        <PresentsInfo
-          className="mb-[2em]"
-          label={content.presentsLabel}
-          content={content.presentsContent}
-          wishlistLink={content.wishlistLink}
-        />
-        <DrinksSelector
-          className="flex flex-col mb-[2em]"
-          label={content.drinksLabel}
-          content={content.drinksContent}
-          availableDrinks={content.availableDrinks}
-        />
-        <AttendanceForm
-          label={content.attendanceLabel}
-          options={content.attendanceOptions}
-          submitButtonText={content.submitButtonText}
-        />
+        <ClothingInfo className="mb-[2em]" />
+        <PresentsInfo className="mb-[2em]" />
+        <DrinksSelector className="flex flex-col mb-[2em]" />
+        <AttendanceForm />
       </div>
 
       {/* Desktop */}
       <div className="hidden md:block text-[1.65vw] px-[3em]">
         <div className="flex justify-between items-center py-[4em]">
           <Logo className="w-[24em]" />
-          <DateSection address={content.dateAddress} link={content.dateLink} />
+          <DateSection />
         </div>
         <div className="flex items-center justify-between gap-[2em] mb-[4em]">
           <div>
-            <SeriesIntro
-              className="text-[1.3em]/[1.25] mb-[1.25em]"
-              semiTransparentText={content.introSemiTransparentText}
-              opaqueText={content.introOpaqueText}
-            />
-            <SeriesDescription
-              header={content.descriptionHeader}
-              content={content.descriptionContent}
-            />
+            <SeriesIntro className="text-[1.3em]/[1.25] mb-[1.25em]" />
+            <SeriesDescription />
           </div>
           <Girl className="w-[22em] flex-shrink-0" />
         </div>
         <div className="flex justify-between items-center gap-8 mb-[1.35em]">
-          <VideoSection className="basis-1/2" videoLink={content.videoLink} />
-          <Schedule className="basis-1/2" content={content.scheduleContent} />
+          <VideoSection className="basis-1/2" />
+          <Schedule className="basis-1/2" />
         </div>
 
         <div className="max-w-[80%] m-auto mb-[2em]">
@@ -238,31 +206,13 @@ const PageContent: React.FC<PageContentProps> = ({ content }) => {
         <div className="flex items-start gap-8">
           <Boy className="-ml-[3em] w-[30em]" />
           <div>
-            <ClothingInfo
-              className="mb-[2em]"
-              label={content.clothingLabel}
-              content={content.clothingContent}
-            />
-            <PresentsInfo
-              className="mb-[2em]"
-              label={content.presentsLabel}
-              content={content.presentsContent}
-              wishlistLink={content.wishlistLink}
-            />
-            <DrinksSelector
-              className="flex flex-col mb-[2em]"
-              label={content.drinksLabel}
-              content={content.drinksContent}
-              availableDrinks={content.availableDrinks}
-            />
+            <ClothingInfo className="mb-[2em]" />
+            <PresentsInfo className="mb-[2em]" />
+            <DrinksSelector className="flex flex-col mb-[2em]" />
           </div>
         </div>
         <div className="pb-[2em]">
-          <AttendanceForm
-            label={content.attendanceLabel}
-            options={content.attendanceOptions}
-            submitButtonText={content.submitButtonText}
-          />
+          <AttendanceForm />
         </div>
       </div>
     </div>

@@ -1,13 +1,14 @@
 import React from "react";
 import { Text } from "./Text";
 import { Label } from "./Label";
+import { useContent } from "../context/ContentContext";
 
 interface ScheduleProps {
   className?: string;
-  content?: string;
 }
 
-export const Schedule = ({ className, content = "" }: ScheduleProps) => {
+export const Schedule = ({ className }: ScheduleProps) => {
+  const { scheduleContent: content = "" } = useContent();
   return (
     <div className={className}>
       <div className="flex gap-[1em] items-center mb-[1em]">

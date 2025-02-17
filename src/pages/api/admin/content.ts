@@ -21,6 +21,7 @@ export default async function handler(
       data: {
         dateAddress: req.body.dateAddress,
         dateLink: req.body.dateLink,
+        dateLinkLabel: req.body.dateLinkLabel,
         introSemiTransparentText: req.body.introSemiTransparentText,
         introOpaqueText: req.body.introOpaqueText,
         descriptionHeader: req.body.descriptionHeader,
@@ -32,11 +33,12 @@ export default async function handler(
         presentsLabel: req.body.presentsLabel,
         presentsContent: req.body.presentsContent,
         wishlistLink: req.body.wishlistLink,
+        wishlistLinkLabel: req.body.wishlistLinkLabel,
         drinksLabel: req.body.drinksLabel,
         drinksContent: req.body.drinksContent,
-        availableDrinks: req.body.availableDrinks,
+        availableDrinks: JSON.stringify(req.body.availableDrinks),
         attendanceLabel: req.body.attendanceLabel,
-        attendanceOptions: req.body.attendanceOptions,
+        attendanceOptions: JSON.stringify(req.body.attendanceOptions),
         submitButtonText: req.body.submitButtonText,
       },
     });

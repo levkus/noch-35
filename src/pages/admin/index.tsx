@@ -7,6 +7,7 @@ interface Content {
   id: string;
   dateAddress: string;
   dateLink: string;
+  dateLinkLabel: string;
   introSemiTransparentText: string;
   introOpaqueText: string;
   descriptionHeader: string;
@@ -18,6 +19,7 @@ interface Content {
   presentsLabel: string;
   presentsContent: string;
   wishlistLink: string;
+  wishlistLinkLabel: string;
   drinksLabel: string;
   drinksContent: string;
   availableDrinks: DrinkOption[];
@@ -171,15 +173,34 @@ export default function AdminPage({ content: initialContent }: Props) {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium">Link</label>
-              <input
-                type="text"
-                value={content.dateLink}
-                onChange={(e) =>
-                  setContent({ ...content, dateLink: e.target.value })
-                }
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-              />
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium">Link</label>
+                  <input
+                    type="text"
+                    value={content.dateLink}
+                    onChange={(e) =>
+                      setContent({ ...content, dateLink: e.target.value })
+                    }
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                    placeholder="URL"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium">
+                    Link Label
+                  </label>
+                  <input
+                    type="text"
+                    value={content.dateLinkLabel}
+                    onChange={(e) =>
+                      setContent({ ...content, dateLinkLabel: e.target.value })
+                    }
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                    placeholder="Text to display"
+                  />
+                </div>
+              </div>
             </div>
           </section>
 
@@ -326,16 +347,36 @@ export default function AdminPage({ content: initialContent }: Props) {
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
               />
             </div>
-            <div>
-              <label className="block text-sm font-medium">Wishlist Link</label>
-              <input
-                type="text"
-                value={content.wishlistLink}
-                onChange={(e) =>
-                  setContent({ ...content, wishlistLink: e.target.value })
-                }
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-              />
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium">
+                  Wishlist Link
+                </label>
+                <input
+                  type="text"
+                  value={content.wishlistLink}
+                  onChange={(e) =>
+                    setContent({ ...content, wishlistLink: e.target.value })
+                  }
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                  placeholder="URL"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium">Link Label</label>
+                <input
+                  type="text"
+                  value={content.wishlistLinkLabel}
+                  onChange={(e) =>
+                    setContent({
+                      ...content,
+                      wishlistLinkLabel: e.target.value,
+                    })
+                  }
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                  placeholder="Text to display"
+                />
+              </div>
             </div>
           </section>
 
@@ -578,6 +619,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
           id: "new",
           dateAddress: "",
           dateLink: "",
+          dateLinkLabel: "",
           introSemiTransparentText: "",
           introOpaqueText: "",
           descriptionHeader: "",
@@ -589,6 +631,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
           presentsLabel: "",
           presentsContent: "",
           wishlistLink: "",
+          wishlistLinkLabel: "",
           drinksLabel: "",
           drinksContent: "",
           availableDrinks: [],
@@ -608,8 +651,14 @@ export const getServerSideProps: GetServerSideProps = async () => {
         ...content,
         createdAt: content.createdAt.toISOString(),
         updatedAt: content.updatedAt.toISOString(),
-        availableDrinks: JSON.parse(content.availableDrinks as string),
-        attendanceOptions: JSON.parse(content.attendanceOptions as string),
+        availableDrinks:
+          typeof content.availableDrinks === "string"
+            ? JSON.parse(content.availableDrinks)
+            : content.availableDrinks,
+        attendanceOptions:
+          typeof content.attendanceOptions === "string"
+            ? JSON.parse(content.attendanceOptions)
+            : content.attendanceOptions,
       },
     },
   };
