@@ -19,6 +19,15 @@ model Guest {
   updatedAt DateTime @updatedAt
 }
 
+model AllowedSlug {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("allowed_slugs")
+}
+
 model Content {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())

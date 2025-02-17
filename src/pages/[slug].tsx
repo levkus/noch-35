@@ -57,7 +57,10 @@ interface Props {
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const slug = params?.slug as string;
 
-  const [user, content] = await Promise.all([
+  const [allowedSlug, user, content] = await Promise.all([
+    prisma.allowedSlug.findUnique({
+      where: { slug },
+    }),
     prisma.guest.findUnique({
       where: { slug },
       select: {
@@ -68,6 +71,12 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     }),
     prisma.content.findFirst(),
   ]);
+
+  if (!allowedSlug) {
+    return {
+      notFound: true,
+    };
+  }
 
   if (!content) {
     await prisma.content.create({
