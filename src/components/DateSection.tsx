@@ -12,7 +12,7 @@ export const DateSection = ({ center = false }: DateSectionProps) => {
     <>
       <div className="flex flex-col">
         <Label className="z-10 -bottom-[0.75em] mr-auto relative left-[2vw]">
-          День Рождения Ночи
+          Днюха Ночи
         </Label>
 
         <Label

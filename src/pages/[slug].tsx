@@ -229,20 +229,20 @@ const PageContent: React.FC = () => {
           </div>
           <Girl className="w-[22em] flex-shrink-0" />
         </div>
-        <div className="flex justify-between items-center gap-8 mb-[1.35em]">
-          <VideoSection className="basis-1/2" />
+        <div className="flex flex-col items-center gap-8 mb-[1.35em]">
+          <VideoSection className="w-[70vw] basis-1/2 mb-[2em]" />
           <Schedule className="basis-1/2" />
         </div>
 
         <div className="max-w-[80%] m-auto mb-[2em]">
           <Graph />
         </div>
-        <div className="flex items-start gap-8">
-          <Boy className="-ml-[3em] w-[30em]" />
+        <div className="flex items-end gap-8">
+          <Boy className="-ml-[3em] w-[120em]" />
           <div>
-            <ClothingInfo className="mb-[2em]" />
-            <GraffitiSelector className="flex flex-col mb-[2em]" />
-            <PresentsInfo className="mb-[2em]" />
+            <ClothingInfo className="mb-[0.5em]" />
+            <GraffitiSelector className="flex flex-col mb-[1em]" />
+            <PresentsInfo className="mb-[1em]" />
             <DrinksSelector className="flex flex-col mb-[2em]" />
           </div>
         </div>

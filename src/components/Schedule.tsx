@@ -25,15 +25,17 @@ export const Schedule = ({ className }: ScheduleProps) => {
           bold
           className="text-[2em] md:text-[1.5em] flex-shrink-0"
         >
-          ПЛАН А:
+          ПЛАН Б:
         </Label>
-        <div className=" text-black opacity-50 text-[1.35em]/[0.9] font-rubik-one">
-          &ldquo;Б&rdquo; быть не должно, но кто знает
-        </div>
       </div>
       <div className="space-y-[0.25em]">
         {schedule.map((item, index) => (
-          <Text key={index}>{`${item.time} - ${item.description}`}</Text>
+          <div key={index}>
+            <Text className="text-[1.2em]/[1.15] md:text-[1.2em]/[1.15] lg:text-[1.2em]/[1.15] font-bold">
+              {item.time}
+            </Text>
+            <Text>{item.description}</Text>
+          </div>
         ))}
       </div>
     </div>

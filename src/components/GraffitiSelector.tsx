@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Label } from "./Label";
-import { Text } from "./Text";
 import { Checkbox } from "./Checkbox";
 import { useForm } from "../context/FormContext";
 import { useContent } from "../context/ContentContext";
@@ -13,11 +11,7 @@ interface GraffitiSelectorProps {
 export const GraffitiSelector: React.FC<GraffitiSelectorProps> = ({
   className,
 }) => {
-  const {
-    graffitiLabel: label,
-    graffitiContent: content = "",
-    availableGraffiti = [],
-  } = useContent();
+  const { availableGraffiti = [] } = useContent();
   const { formData, setFormData } = useForm();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -41,7 +35,6 @@ export const GraffitiSelector: React.FC<GraffitiSelectorProps> = ({
 
   return (
     <div className={className}>
-      <Label className="mb-[0.5em] mr-auto">{label}</Label>
       <div ref={dropdownRef} className="relative mb-[0.5em] mr-auto">
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -100,12 +93,6 @@ export const GraffitiSelector: React.FC<GraffitiSelectorProps> = ({
             ))}
           </div>
         )}
-      </div>
-
-      <div className="space-y-[0.5em]">
-        {content.split("\n\n").map((paragraph: string, index: number) => (
-          <Text key={index}>{paragraph}</Text>
-        ))}
       </div>
     </div>
   );

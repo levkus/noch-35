@@ -3,6 +3,7 @@ import { Checkbox } from "./Checkbox";
 import { Label } from "./Label";
 import { useForm } from "../context/FormContext";
 import { useContent } from "../context/ContentContext";
+import { Text } from "@/components/Text";
 
 export const AttendanceForm: React.FC = () => {
   const {
@@ -26,6 +27,13 @@ export const AttendanceForm: React.FC = () => {
       <Label bold color="black" className="mb-[0.5em] mr-auto">
         {label}
       </Label>
+      <Text className="mb-[0.5em]">
+        Вообще-то, я тебя, пиздец, как жду! Одного, чтоб ты был у меня в
+        рабстве, с половинкой чтоб вместе страдать (ой, простите, сочувствовать
+        ей), или со своими спиногрызами - приходи. Лишь бы настроение заебок
+        было, а если тебе будет херово - в тему днюхи впишешься! Лучше хреновый
+        приятель на днюхе, чем сидеть одному в этом сраном мир.
+      </Text>
       <div className="space-y-[0.5em] mb-[0.5em]">
         {options.map((option, index) => (
           <Checkbox
