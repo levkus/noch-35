@@ -57,7 +57,7 @@ export const GraffitiSelector: React.FC<GraffitiSelectorProps> = ({
               : "Выбери"}
           </span>
           <svg
-            className={`w-5 h-5 transition-transform ${
+            className={`w-5 h-5 transition-transform flex-shrink-0 ${
               isOpen ? "rotate-180" : ""
             }`}
             fill="none"
@@ -80,18 +80,18 @@ export const GraffitiSelector: React.FC<GraffitiSelectorProps> = ({
                 key={option.id}
                 checked={formData.graffiti.selections.includes(option.id)}
                 onChange={(checked) => {
-                  setFormData((prev) => ({
-                    ...prev,
+                  const newData = {
+                    ...formData,
                     graffiti: {
                       selections: checked
-                        ? [...prev.graffiti.selections, option.id]
-                        : prev.graffiti.selections.filter(
+                        ? [...formData.graffiti.selections, option.id]
+                        : formData.graffiti.selections.filter(
                             (item: string) => item !== option.id
                           ),
                     },
-                  }));
-
-                  handleSubmit();
+                  };
+                  setFormData(newData);
+                  handleSubmit(newData);
                 }}
                 label={option.label}
               />

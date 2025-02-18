@@ -6,7 +6,7 @@ interface FormContextType {
   formData: FormData;
   setFormData: React.Dispatch<React.SetStateAction<FormData>>;
   isSubmitting: boolean;
-  handleSubmit: () => Promise<void>;
+  handleSubmit: (newData?: FormData) => Promise<void>;
   initializeForm: (userData: GuestData) => void;
 }
 
@@ -24,23 +24,40 @@ export const FormProvider: React.FC<FormProviderProps> = ({
   initialData,
 }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState<FormData>(() => ({
-    drinks: initialData.drinks,
-    graffiti: initialData.graffiti,
-    attendance: initialData.attendance,
-  }));
+  const [formData, setFormData] = useState<FormData>(() => {
+    // Ensure we're using the initial selections from the database
+    return {
+      drinks: {
+        selections: initialData.drinks?.selections || [],
+      },
+      graffiti: {
+        selections: initialData.graffiti?.selections || [],
+      },
+      attendance: {
+        selection: initialData.attendance?.selection || null,
+      },
+    };
+  });
 
   const initializeForm = (userData: GuestData) => {
     setFormData({
-      drinks: userData.drinks,
-      graffiti: userData.graffiti,
-      attendance: userData.attendance,
+      drinks: {
+        selections: userData.drinks?.selections || [],
+      },
+      graffiti: {
+        selections: userData.graffiti?.selections || [],
+      },
+      attendance: {
+        selection: userData.attendance?.selection || null,
+      },
     });
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (newData?: FormData) => {
     try {
       setIsSubmitting(true);
+
+      const dataToSubmit = newData || formData;
 
       const response = await fetch("/api/submit", {
         method: "POST",
@@ -49,9 +66,9 @@ export const FormProvider: React.FC<FormProviderProps> = ({
         },
         body: JSON.stringify({
           slug: userSlug,
-          drinks: formData.drinks,
-          graffiti: formData.graffiti,
-          attendance: formData.attendance,
+          drinks: dataToSubmit.drinks,
+          graffiti: dataToSubmit.graffiti,
+          attendance: dataToSubmit.attendance,
         }),
       });
 

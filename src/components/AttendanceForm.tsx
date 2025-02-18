@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Checkbox } from "./Checkbox";
 import { Label } from "./Label";
 import { useForm } from "../context/FormContext";
@@ -12,17 +12,19 @@ export const AttendanceForm: React.FC = () => {
     submitButtonText,
   } = useContent();
   const { formData, setFormData, isSubmitting, handleSubmit } = useForm();
+  const [submitButtonTxt, setSubmitButtonTxt] = useState(submitButtonText);
 
   const handleOptionChange = (option: string, checked: boolean) => {
-    setFormData((prev) => ({
-      ...prev,
+    const newData = {
+      ...formData,
       attendance: {
         selection: checked ? option : null,
       },
-    }));
+    };
+    setFormData(newData);
 
     if (checked) {
-      handleSubmit();
+      handleSubmit(newData);
     }
   };
 
@@ -49,13 +51,17 @@ export const AttendanceForm: React.FC = () => {
         ))}
       </div>
       <button
-        onClick={handleSubmit}
+        onClick={() => {
+          setSubmitButtonTxt("ПОНЯЛ, ПРИНЯЛ, ЗАПИСАЛ");
+          setTimeout(() => {
+            setSubmitButtonTxt(submitButtonText);
+          }, 2000);
+          handleSubmit();
+        }}
         disabled={isSubmitting}
-        className={`bg-white text-[#F75816] border-[#F75816] border-2 px-[0.75em] py-[0.375em] font-rubik-one rounded-md mr-auto ${
-          isSubmitting ? "opacity-50 cursor-not-allowed" : ""
-        }`}
+        className={`bg-white text-[#F75816] border-[#F75816] border-2 px-[0.75em] py-[0.375em] font-rubik-one rounded-md mr-auto`}
       >
-        {isSubmitting ? "ОТПРАВЛЯЕМ..." : submitButtonText}
+        {submitButtonTxt}
       </button>
     </div>
   );

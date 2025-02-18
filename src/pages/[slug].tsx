@@ -213,7 +213,7 @@ const PageContent: React.FC = () => {
         </div>
         <div>
           <div className="relative flex">
-            <Boy className="absolute w-[15em] bottom-[1em] -left-[8em]" />
+            <Boy className="absolute w-[13em] bottom-[1em] -left-[8em]" />
             <div className="z-10 pl-[5em]">
               <ClothingInfo className="mb-[1em]" />
             </div>

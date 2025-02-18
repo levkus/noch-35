@@ -60,7 +60,7 @@ export const DrinksSelector: React.FC<DrinksSelectorProps> = ({
               : "Выбери что пить будешь"}
           </span>
           <svg
-            className={`w-5 h-5 transition-transform ${
+            className={`flex-shrink-0 w-5 h-5 transition-transform ${
               isOpen ? "rotate-180" : ""
             }`}
             fill="none"
@@ -83,18 +83,18 @@ export const DrinksSelector: React.FC<DrinksSelectorProps> = ({
                 key={option.id}
                 checked={formData.drinks.selections.includes(option.id)}
                 onChange={(checked) => {
-                  setFormData((prev) => ({
-                    ...prev,
+                  const newData = {
+                    ...formData,
                     drinks: {
                       selections: checked
-                        ? [...prev.drinks.selections, option.id]
-                        : prev.drinks.selections.filter(
+                        ? [...formData.drinks.selections, option.id]
+                        : formData.drinks.selections.filter(
                             (item) => item !== option.id
                           ),
                     },
-                  }));
-
-                  handleSubmit();
+                  };
+                  setFormData(newData);
+                  handleSubmit(newData);
                 }}
                 label={option.label}
               />
