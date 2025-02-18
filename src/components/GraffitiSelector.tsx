@@ -13,7 +13,7 @@ export const GraffitiSelector: React.FC<GraffitiSelectorProps> = ({
   className,
 }) => {
   const { availableGraffiti = [] } = useContent();
-  const { formData, setFormData } = useForm();
+  const { formData, setFormData, handleSubmit } = useForm();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -42,9 +42,9 @@ export const GraffitiSelector: React.FC<GraffitiSelectorProps> = ({
       <div ref={dropdownRef} className="relative mb-[0.5em] mr-auto">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex min-w-[280px] items-center justify-between px-[0.5em] py-[0.25em] text-[1em] border-2 border-black rounded-sm bg-white"
+          className="flex w-[280px] md:w-[600px] items-center justify-between px-[0.5em] py-[0.25em] text-[1em] border-2 border-black rounded-sm bg-white"
         >
-          <span className="text-gray-600 mr-[0.5em]">
+          <span className="text-gray-600 mr-[0.5em] whitespace-nowrap max-w-[280px] md:max-w-[600px] overflow-hidden text-ellipsis">
             {formData.graffiti.selections.length > 0
               ? formData.graffiti.selections
                   .map(
@@ -74,26 +74,27 @@ export const GraffitiSelector: React.FC<GraffitiSelectorProps> = ({
         </button>
 
         {isOpen && (
-          <div className="absolute z-20 min-w-[280px] mt-[0.25em] bg-white border-2 border-black rounded-md space-y-[0.5em]">
+          <div className="absolute z-20 min-w-[280px] mt-[0.25em] bg-white border-2 border-black rounded-md space-y-[0.5em] p-[0.5em]">
             {availableGraffiti.map((option: GraffitiOption) => (
-              <div key={option.id} className="p-[0.25em] hover:bg-gray-100">
-                <Checkbox
-                  checked={formData.graffiti.selections.includes(option.id)}
-                  onChange={(checked) => {
-                    setFormData((prev) => ({
-                      ...prev,
-                      graffiti: {
-                        selections: checked
-                          ? [...prev.graffiti.selections, option.id]
-                          : prev.graffiti.selections.filter(
-                              (item: string) => item !== option.id
-                            ),
-                      },
-                    }));
-                  }}
-                  label={option.label}
-                />
-              </div>
+              <Checkbox
+                key={option.id}
+                checked={formData.graffiti.selections.includes(option.id)}
+                onChange={(checked) => {
+                  setFormData((prev) => ({
+                    ...prev,
+                    graffiti: {
+                      selections: checked
+                        ? [...prev.graffiti.selections, option.id]
+                        : prev.graffiti.selections.filter(
+                            (item: string) => item !== option.id
+                          ),
+                    },
+                  }));
+
+                  handleSubmit();
+                }}
+                label={option.label}
+              />
             ))}
           </div>
         )}

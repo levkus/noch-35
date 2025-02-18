@@ -20,6 +20,10 @@ export const AttendanceForm: React.FC = () => {
         selection: checked ? option : null,
       },
     }));
+
+    if (checked) {
+      handleSubmit();
+    }
   };
 
   return (
@@ -34,7 +38,7 @@ export const AttendanceForm: React.FC = () => {
         было, а если тебе будет херово - в тему днюхи впишешься! Лучше хреновый
         приятель на днюхе, чем сидеть одному в этом сраном мир.
       </Text>
-      <div className="space-y-[0.5em] mb-[0.5em]">
+      <div className="space-y-[0.5em] mb-[1em]">
         {options.map((option, index) => (
           <Checkbox
             key={index}

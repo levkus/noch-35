@@ -58,11 +58,9 @@ export const FormProvider: React.FC<FormProviderProps> = ({
       if (!response.ok) {
         throw new Error("Failed to submit form");
       }
-
-      toast.success("Форма успешно сохранена!");
     } catch (error) {
       console.error("Error submitting form:", error);
-      toast.error("Произошла ошибка при отправке формы. Попробуйте еще раз.");
+      toast.error("Упс, я обосрался. хз че делать, попробуй позже");
     } finally {
       setIsSubmitting(false);
     }

@@ -222,7 +222,7 @@ const PageContent: React.FC = () => {
           <DrinksSelector className="flex flex-col mb-[1em]" />
           <GraffitiSelector className="relative flex flex-col mb-[1em] z-20" />
         </div>
-        <div className="pb-[4em]">
+        <div className="pb-[2em]">
           <AttendanceForm />
         </div>
       </div>
@@ -240,9 +240,13 @@ const PageContent: React.FC = () => {
           </div>
           <Girl className="w-[22em] flex-shrink-0" />
         </div>
-        <div className="flex flex-col items-center gap-8 mb-[1.35em]">
-          <VideoSection className="w-[70vw] basis-1/2 mb-[2em]" />
-          <Schedule className="basis-1/2" />
+        <div className="flex flex-col gap-8 mb-[1.35em] items-center">
+          <div className="flex justify-center">
+            <VideoSection className="w-[70vw] mb-[2em]" />
+          </div>
+          <div className="max-w-[50vw]">
+            <Schedule />
+          </div>
         </div>
 
         <div className="max-w-[80%] m-auto mb-[2em]">

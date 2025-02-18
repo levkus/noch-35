@@ -23,7 +23,10 @@ export const PresentsInfo = ({ className }: PresentsInfoProps) => {
           <Text key={index}>{paragraph}</Text>
         ))}
         {wishlistLink && (
-          <a href={wishlistLink} className="text-[#F75816] underline">
+          <a
+            href={wishlistLink}
+            className="text-[#F75816] text-[1.5em] font-bold underline"
+          >
             {wishlistLinkLabel || "Вишлист тут"}
           </a>
         )}
