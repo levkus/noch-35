@@ -10,7 +10,7 @@ interface Content {
   descriptionHeader: string;
   descriptionContent: string;
   videoLink: string;
-  scheduleContent: string;
+  scheduleContent: { time: string; description: string }[];
   clothingLabel: string;
   clothingContent: string;
   presentsLabel: string;

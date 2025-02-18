@@ -24,12 +24,24 @@ async function main() {
 
 Вот на ДР будет также. Но там же будут дети, постараемся не матюкаться при них.`,
       videoLink: "/promo.mp4",
-      scheduleContent: `18:00 - собираемся (можно опаздывать, но не сильно)
-18:30 - придет пиздюческий аниматор
-19:00 - пиздуем рисовать граффити
-21:30 - кончаем (хе-хе) с граффити и валим в лофт
-21:45 - отрываемся
-00:00 - расходимся по кроваткам (да пихдю я! едем дальше тусить ко мне на хату или в барчик какой-нибудь. время ж детское, накуй)`,
+      scheduleContent: JSON.stringify([
+        {
+          time: "18:00",
+          description: "собираемся (можно опаздывать, но не сильно)",
+        },
+        { time: "18:30", description: "придет пиздюческий аниматор" },
+        { time: "19:00", description: "пиздуем рисовать граффити" },
+        {
+          time: "21:30",
+          description: "кончаем (хе-хе) с граффити и валим в лофт",
+        },
+        { time: "21:45", description: "отрываемся" },
+        {
+          time: "00:00",
+          description:
+            "расходимся по кроваткам (да пихдю я! едем дальше тусить ко мне на хату или в барчик какой-нибудь. время ж детское, накуй)",
+        },
+      ]),
       clothingLabel: "Шматье",
       clothingContent: `Ты ж понял, что мы будем стены разукрашивать!? Вот форму зека мы тебе нашли, а как ты от мороза и краски будешь защищать остальное - сам решай.
 
@@ -68,7 +80,36 @@ async function main() {
     },
   });
 
-  console.log("Database has been seeded with default content");
+  // Delete existing allowed slugs
+  await prisma.allowedSlug.deleteMany();
+
+  // Create allowed slugs
+  await prisma.allowedSlug.createMany({
+    data: [
+      { slug: "levkus" },
+      { slug: "magun" },
+      { slug: "adm1n" },
+      { slug: "oksana" },
+      { slug: "ruslan" },
+      { slug: "dasha" },
+      { slug: "shadrin" },
+      { slug: "virka" },
+      { slug: "kassad" },
+      { slug: "daerus" },
+      { slug: "leyka" },
+      { slug: "max" },
+      { slug: "masha" },
+      { slug: "lena" },
+      { slug: "julya" },
+      { slug: "alesya" },
+      { slug: "sokolov" },
+      { slug: "alenka" },
+    ],
+  });
+
+  console.log(
+    "Database has been seeded with default content and allowed slugs"
+  );
 }
 
 main()

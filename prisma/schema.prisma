@@ -50,7 +50,7 @@ model Content {
   videoLink String @default("")
 
   // Schedule section
-  scheduleContent String @default("")
+  scheduleContent Json @default("[]")
 
   // Clothing info section
   clothingLabel   String @default("")

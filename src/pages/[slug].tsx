@@ -36,7 +36,7 @@ interface Props {
     descriptionHeader: string;
     descriptionContent: string;
     videoLink: string;
-    scheduleContent: string;
+    scheduleContent: { time: string; description: string }[];
     clothingLabel: string;
     clothingContent: string;
     presentsLabel: string;
@@ -95,7 +95,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     descriptionHeader: "",
     descriptionContent: "",
     videoLink: "",
-    scheduleContent: "",
+    scheduleContent: [],
     clothingLabel: "",
     clothingContent: "",
     presentsLabel: "",
@@ -144,6 +144,10 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
               typeof content.attendanceOptions === "string"
                 ? JSON.parse(content.attendanceOptions)
                 : content.attendanceOptions,
+            scheduleContent:
+              typeof content.scheduleContent === "string"
+                ? JSON.parse(content.scheduleContent)
+                : content.scheduleContent,
           }
         : defaultContent,
     },

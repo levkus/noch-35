@@ -27,7 +27,7 @@ export default async function handler(
         descriptionHeader: req.body.descriptionHeader,
         descriptionContent: req.body.descriptionContent,
         videoLink: req.body.videoLink,
-        scheduleContent: req.body.scheduleContent,
+        scheduleContent: JSON.stringify(req.body.scheduleContent),
         clothingLabel: req.body.clothingLabel,
         clothingContent: req.body.clothingContent,
         presentsLabel: req.body.presentsLabel,
