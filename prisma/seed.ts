@@ -66,6 +66,21 @@ async function main() {
         { id: generateId(), label: "крепкое" },
         { id: generateId(), label: "безалкогольное" },
       ]),
+      graffitiLabel: "Ну чё, порисуем?",
+      graffitiContent:
+        "Выбирай, чё тебя больше всего мотивирует порисовать. Можно несколько вариантов, хули.",
+      availableGraffiti: JSON.stringify([
+        { id: generateId(), label: "Конечно хочу! Че за вопросы вообще?" },
+        {
+          id: generateId(),
+          label: "да нах оно мне нужно!? я лучше побухаю или маркерами порисую",
+        },
+        {
+          id: generateId(),
+          label: "половинка сердца моя помулевать хочет, а яж люблю ее",
+        },
+        { id: generateId(), label: "отпрыск мой тоже порисовать хочет, хуле!" },
+      ]),
       attendanceLabel: "БЛЯ, А ТЫ ПРИДЕШЬ-ТО?",
       attendanceOptions: JSON.stringify([
         { id: generateId(), label: "че за тупой вопрос!? конеш я буду!" },

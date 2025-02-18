@@ -1,31 +1,5 @@
 import { createContext, useContext } from "react";
-
-interface Content {
-  id: string;
-  dateAddress: string;
-  dateLink: string;
-  dateLinkLabel: string;
-  introSemiTransparentText: string;
-  introOpaqueText: string;
-  descriptionHeader: string;
-  descriptionContent: string;
-  videoLink: string;
-  scheduleContent: { time: string; description: string }[];
-  clothingLabel: string;
-  clothingContent: string;
-  presentsLabel: string;
-  presentsContent: string;
-  wishlistLink: string;
-  wishlistLinkLabel: string;
-  drinksLabel: string;
-  drinksContent: string;
-  availableDrinks: { id: string; label: string }[];
-  attendanceLabel: string;
-  attendanceOptions: { id: string; label: string }[];
-  submitButtonText: string;
-  createdAt: string;
-  updatedAt: string;
-}
+import { Content } from "@/types/content";
 
 const ContentContext = createContext<Content | null>(null);
 

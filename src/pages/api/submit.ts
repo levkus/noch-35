@@ -9,18 +9,20 @@ export default async function handler(
   }
 
   try {
-    const { slug, drinks, attendance } = req.body;
+    const { slug, drinks, graffiti, attendance } = req.body;
 
     // Use the URL slug to create or update the guest
     const guest = await prisma.guest.upsert({
       where: { slug },
       update: {
         drinks,
+        graffiti,
         attendance,
       },
       create: {
         slug,
         drinks,
+        graffiti,
         attendance,
       },
     });

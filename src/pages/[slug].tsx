@@ -8,6 +8,7 @@ import { VideoSection } from "../components/VideoSection";
 import { Schedule } from "../components/Schedule";
 import { AttendanceForm } from "../components/AttendanceForm";
 import { DrinksSelector } from "@/components/DrinksSelector";
+import { GraffitiSelector } from "@/components/GraffitiSelector";
 import { Logo } from "@/components/Logo";
 import { DateSection } from "@/components/DateSection";
 import { Girl } from "@/components/Girl";
@@ -20,6 +21,9 @@ interface Props {
   user: {
     slug: string;
     drinks: {
+      selections: string[];
+    };
+    graffiti: {
       selections: string[];
     };
     attendance: {
@@ -46,6 +50,9 @@ interface Props {
     drinksLabel: string;
     drinksContent: string;
     availableDrinks: { id: string; label: string }[];
+    graffitiLabel: string;
+    graffitiContent: string;
+    availableGraffiti: { id: string; label: string }[];
     attendanceLabel: string;
     attendanceOptions: { id: string; label: string }[];
     submitButtonText: string;
@@ -66,6 +73,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       select: {
         slug: true,
         drinks: true,
+        graffiti: true,
         attendance: true,
       },
     }),
@@ -105,6 +113,9 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     drinksLabel: "",
     drinksContent: "",
     availableDrinks: [],
+    graffitiLabel: "",
+    graffitiContent: "",
+    availableGraffiti: [],
     attendanceLabel: "",
     attendanceOptions: [],
     submitButtonText: "",
@@ -121,6 +132,10 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
               typeof user.drinks === "string"
                 ? JSON.parse(user.drinks)
                 : user.drinks,
+            graffiti:
+              typeof user.graffiti === "string"
+                ? JSON.parse(user.graffiti)
+                : user.graffiti,
             attendance:
               typeof user.attendance === "string"
                 ? JSON.parse(user.attendance)
@@ -129,6 +144,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
         : {
             slug,
             drinks: { selections: [] },
+            graffiti: { selections: [] },
             attendance: { selection: null },
           },
       content: content
@@ -140,6 +156,10 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
               typeof content.availableDrinks === "string"
                 ? JSON.parse(content.availableDrinks)
                 : content.availableDrinks,
+            availableGraffiti:
+              typeof content.availableGraffiti === "string"
+                ? JSON.parse(content.availableGraffiti)
+                : content.availableGraffiti,
             attendanceOptions:
               typeof content.attendanceOptions === "string"
                 ? JSON.parse(content.attendanceOptions)
@@ -192,6 +212,7 @@ const PageContent: React.FC = () => {
         <ClothingInfo className="mb-[2em]" />
         <PresentsInfo className="mb-[2em]" />
         <DrinksSelector className="flex flex-col mb-[2em]" />
+        <GraffitiSelector className="flex flex-col mb-[2em]" />
         <AttendanceForm />
       </div>
 
@@ -220,6 +241,7 @@ const PageContent: React.FC = () => {
           <Boy className="-ml-[3em] w-[30em]" />
           <div>
             <ClothingInfo className="mb-[2em]" />
+            <GraffitiSelector className="flex flex-col mb-[2em]" />
             <PresentsInfo className="mb-[2em]" />
             <DrinksSelector className="flex flex-col mb-[2em]" />
           </div>

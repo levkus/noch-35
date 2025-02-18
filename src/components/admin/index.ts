@@ -7,4 +7,5 @@ export { ScheduleSection } from "./ScheduleSection";
 export { ClothingSection } from "./ClothingSection";
 export { PresentsSection } from "./PresentsSection";
 export { DrinksSection } from "./DrinksSection";
+export { GraffitiSection } from "./GraffitiSection";
 export { AttendanceSection } from "./AttendanceSection";

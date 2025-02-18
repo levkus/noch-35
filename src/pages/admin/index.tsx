@@ -10,6 +10,7 @@ import {
   ClothingSection,
   PresentsSection,
   DrinksSection,
+  GraffitiSection,
   AttendanceSection,
 } from "@/components/admin";
 import { Content } from "@/types/content";
@@ -48,6 +49,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
           ...content,
           scheduleContent: JSON.parse(content.scheduleContent as string),
           availableDrinks: JSON.parse(content.availableDrinks as string),
+          availableGraffiti: JSON.parse(content.availableGraffiti as string),
           attendanceOptions: JSON.parse(content.attendanceOptions as string),
           createdAt: content.createdAt.toISOString(),
           updatedAt: content.updatedAt.toISOString(),
@@ -95,6 +97,9 @@ export default function AdminPage({
       drinksLabel: "",
       drinksContent: "",
       availableDrinks: [],
+      graffitiLabel: "",
+      graffitiContent: "",
+      availableGraffiti: [],
       attendanceLabel: "",
       attendanceOptions: [],
       submitButtonText: "",
@@ -191,6 +196,13 @@ export default function AdminPage({
               drinksLabel={content.drinksLabel}
               drinksContent={content.drinksContent}
               availableDrinks={content.availableDrinks}
+              onChange={updateContent}
+            />
+
+            <GraffitiSection
+              graffitiLabel={content.graffitiLabel}
+              graffitiContent={content.graffitiContent}
+              availableGraffiti={content.availableGraffiti}
               onChange={updateContent}
             />
 

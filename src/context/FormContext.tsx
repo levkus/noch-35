@@ -26,12 +26,14 @@ export const FormProvider: React.FC<FormProviderProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState<FormData>(() => ({
     drinks: initialData.drinks,
+    graffiti: initialData.graffiti,
     attendance: initialData.attendance,
   }));
 
   const initializeForm = (userData: GuestData) => {
     setFormData({
       drinks: userData.drinks,
+      graffiti: userData.graffiti,
       attendance: userData.attendance,
     });
   };
@@ -48,6 +50,7 @@ export const FormProvider: React.FC<FormProviderProps> = ({
         body: JSON.stringify({
           slug: userSlug,
           drinks: formData.drinks,
+          graffiti: formData.graffiti,
           attendance: formData.attendance,
         }),
       });

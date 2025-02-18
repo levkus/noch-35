@@ -12,8 +12,9 @@ model Guest {
   slug      String   @unique
   createdAt DateTime @default(now())
   
-  // Drinks and attendance stored as JSON
+  // Form selections stored as JSON
   drinks     Json    @default("{\"selections\":[]}")
+  graffiti   Json    @default("{\"selections\":[]}")
   attendance Json    @default("{\"selection\":null}")
   
   updatedAt DateTime @updatedAt
@@ -66,6 +67,11 @@ model Content {
   drinksLabel   String @default("")
   drinksContent String @default("")
   availableDrinks Json @default("[]")
+
+  // Graffiti selector section
+  graffitiLabel   String @default("")
+  graffitiContent String @default("")
+  availableGraffiti Json @default("[]")
 
   // Attendance form section
   attendanceLabel    String @default("")

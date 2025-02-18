@@ -1,4 +1,4 @@
-import { DrinkOption, AttendanceOption } from "./options";
+import { DrinkOption, GraffitiOption, AttendanceOption } from "./options";
 
 export interface Content {
   id: string;
@@ -20,6 +20,9 @@ export interface Content {
   drinksLabel: string;
   drinksContent: string;
   availableDrinks: DrinkOption[];
+  graffitiLabel: string;
+  graffitiContent: string;
+  availableGraffiti: GraffitiOption[];
   attendanceLabel: string;
   attendanceOptions: AttendanceOption[];
   submitButtonText: string;
