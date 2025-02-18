@@ -246,7 +246,7 @@ const PageContent: React.FC = () => {
             <DrinksSelector className="flex flex-col mb-[2em]" />
           </div>
         </div>
-        <div className="pb-[2em]">
+        <div className="pb-[4em]">
           <AttendanceForm />
         </div>
       </div>
