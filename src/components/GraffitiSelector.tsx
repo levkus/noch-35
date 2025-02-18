@@ -3,6 +3,7 @@ import { Checkbox } from "./Checkbox";
 import { useForm } from "../context/FormContext";
 import { useContent } from "../context/ContentContext";
 import { GraffitiOption } from "@/types/options";
+import { Label } from "./Label";
 
 interface GraffitiSelectorProps {
   className?: string;
@@ -35,6 +36,9 @@ export const GraffitiSelector: React.FC<GraffitiSelectorProps> = ({
 
   return (
     <div className={className}>
+      <Label color="black" className="mb-[0.5em] mr-auto">
+        А граффити рисовать будешь?
+      </Label>
       <div ref={dropdownRef} className="relative mb-[0.5em] mr-auto">
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -50,7 +54,7 @@ export const GraffitiSelector: React.FC<GraffitiSelectorProps> = ({
                       )?.label || id
                   )
                   .join(", ")
-              : "Выбери почему хочешь порисовать"}
+              : "Выбери"}
           </span>
           <svg
             className={`w-5 h-5 transition-transform ${
@@ -70,7 +74,7 @@ export const GraffitiSelector: React.FC<GraffitiSelectorProps> = ({
         </button>
 
         {isOpen && (
-          <div className="absolute z-10 w-[280px] mt-[0.25em] bg-white border-2 border-black rounded-md">
+          <div className="absolute z-20 min-w-[280px] mt-[0.25em] bg-white border-2 border-black rounded-md space-y-[0.5em]">
             {availableGraffiti.map((option: GraffitiOption) => (
               <div key={option.id} className="p-[0.25em] hover:bg-gray-100">
                 <Checkbox

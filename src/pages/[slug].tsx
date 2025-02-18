@@ -188,32 +188,43 @@ const PageContent: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Mobile */}
-      <div className="md:hidden text-[4vw] px-[2em]">
-        <div className="flex justify-center pt-[2em] pb-[0em]">
-          <Logo className="max-w-[70vw]" />
+      <div className="md:hidden text-[5vw] px-[1em]">
+        <div className="flex justify-center pt-[4em] pb-[0em]">
+          <Logo className="max-w-[60vw]" />
         </div>
         <div className="flex justify-center pb-[2em]">
           <DateSection center />
         </div>
-        <div className="flex">
-          <SeriesIntro />
-          <Girl />
+        <div className="flex items-center mb-[2em]">
+          <SeriesIntro className="relative -mr-[2em]" />
+          <Girl className="w-[40vw] flex-shrink-0" />
         </div>
-        <div>
+        <div className="mb-[3em]">
           <SeriesDescription />
         </div>
-        <div>
+        <div className="mb-[2em]">
           <VideoSection />
         </div>
-        <div>
+        <div className="mb-[2em]">
           <Schedule />
         </div>
-        <Graph />
-        <ClothingInfo className="mb-[2em]" />
-        <PresentsInfo className="mb-[2em]" />
-        <DrinksSelector className="flex flex-col mb-[2em]" />
-        <GraffitiSelector className="flex flex-col mb-[2em]" />
-        <AttendanceForm />
+        <div className="mb-[3em]">
+          <Graph />
+        </div>
+        <div>
+          <div className="relative flex">
+            <Boy className="absolute w-[15em] bottom-[1em] -left-[8em]" />
+            <div className="z-10 pl-[5em]">
+              <ClothingInfo className="mb-[1em]" />
+            </div>
+          </div>
+          <PresentsInfo className="mb-[2em]" />
+          <DrinksSelector className="flex flex-col mb-[1em]" />
+          <GraffitiSelector className="relative flex flex-col mb-[1em] z-20" />
+        </div>
+        <div className="pb-[4em]">
+          <AttendanceForm />
+        </div>
       </div>
 
       {/* Desktop */}
@@ -241,9 +252,9 @@ const PageContent: React.FC = () => {
           <Boy className="-ml-[3em] w-[120em]" />
           <div>
             <ClothingInfo className="mb-[0.5em]" />
-            <GraffitiSelector className="flex flex-col mb-[1em]" />
             <PresentsInfo className="mb-[1em]" />
             <DrinksSelector className="flex flex-col mb-[2em]" />
+            <GraffitiSelector className="flex flex-col mb-[1em]" />
           </div>
         </div>
         <div className="pb-[4em]">

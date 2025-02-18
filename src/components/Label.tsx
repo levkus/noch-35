@@ -16,7 +16,7 @@ export const Label = ({
   return (
     <div
       className={cn(
-        `flex text-white px-[0.75em] py-[0.375em] text-[1.2em] rounded-md ${className}`,
+        `flex text-white md:text-[1.2em] px-[0.5em] py-[0.125em] md:px-[0.75em] md:py-[0.375em] text-[1em] rounded-md ${className}`,
         {
           "font-rubik-one": bold,
           "font-cuprum": !bold,

@@ -23,15 +23,15 @@ export const Schedule = ({ className }: ScheduleProps) => {
         <Label
           color="black"
           bold
-          className="text-[2em] md:text-[1.5em] flex-shrink-0"
+          className="text-[1.5em] md:text-[2em] flex-shrink-0"
         >
           ПЛАН Б:
         </Label>
       </div>
-      <div className="space-y-[0.25em]">
+      <div className="space-y-[1em]">
         {schedule.map((item, index) => (
           <div key={index}>
-            <Text className="text-[1.2em]/[1.15] md:text-[1.2em]/[1.15] lg:text-[1.2em]/[1.15] font-bold">
+            <Text className="text-[1.3em]/[1.15] md:text-[1.2em]/[1.15] lg:text-[1.2em]/[1.15] font-bold">
               {item.time}
             </Text>
             <Text>{item.description}</Text>

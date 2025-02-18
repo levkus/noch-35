@@ -7,7 +7,7 @@ export const SeriesDescription: React.FC = () => {
     useContent();
   return (
     <div>
-      <div className="flex justify-between items-center text-[1.3em]/[1.5] mb-[0.5em] font-rubik-one w-[100%]">
+      <div className="flex justify-between items-center text-[1em]/[1.2] md:text-[1.3em]/[1.5] mb-[0.5em] font-rubik-one w-[100%]">
         <div className="text-[#F75816]">{header}</div>
         <div className="text-black">18+</div>
       </div>

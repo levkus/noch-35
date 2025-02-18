@@ -13,9 +13,7 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: "Cuprum", sans-serif;
-  background-image: url("/nobg.jpeg");
-  background-repeat: repeat-y;
-  background-size: cover;
-  background-attachment: fixed;
+  background-image: url("/bg.png");
+  background-repeat: repeat;
   background-position: top center;
 }

@@ -40,12 +40,14 @@ export const DrinksSelector: React.FC<DrinksSelectorProps> = ({
 
   return (
     <div className={className}>
-      <Label className="mb-[0.5em] mr-auto">{label}</Label>
+      <Label color="black" className="mb-[0.5em] mr-auto">
+        {label}
+      </Label>
 
       <div ref={dropdownRef} className="relative mb-[0.5em] mr-auto">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex min-w-[280px] items-center justify-between px-[0.5em] py-[0.25em] text-[1em] border-2 border-black rounded-sm bg-white"
+          className="flex min-w-[200px] items-center justify-between px-[0.5em] py-[0.25em] text-[1em] border-2 border-black rounded-sm bg-white"
         >
           <span className="text-gray-600 mr-[0.5em]">
             {formData.drinks.selections.length > 0
@@ -75,7 +77,7 @@ export const DrinksSelector: React.FC<DrinksSelectorProps> = ({
         </button>
 
         {isOpen && (
-          <div className="absolute z-10 w-[280px] mt-[0.25em] bg-white border-2 border-black rounded-md">
+          <div className="absolute z-10 w-[280px] mt-[0.25em] right-0 bg-white border-2 border-black rounded-md">
             {availableDrinks.map((option) => (
               <div key={option.id} className="p-[0.25em] hover:bg-gray-100">
                 <Checkbox

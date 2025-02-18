@@ -12,7 +12,7 @@ async function main() {
   // Create default content
   await prisma.content.create({
     data: {
-      dateAddress: "7 МАРТА 18:00",
+      dateAddress: "Тут должен быть адрес, но его нет пока, ",
       dateLink: "но где-то районе м. Курская",
       introSemiTransparentText: "ЭТО НЕ НОЧЬ!",
       introOpaqueText:

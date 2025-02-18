@@ -15,11 +15,11 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 }) => {
   return (
     <label
-      className={`flex items-center gap-[0.5em] cursor-pointer ${className}`}
+      className={`flex flex-shrink-0 items-start gap-[0.5em] cursor-pointer ${className}`}
     >
       <input
         type="checkbox"
-        className="w-[1.5em] h-[1.5em] accent-black"
+        className="flex-shrink-0 w-[1.5em] h-[1.5em] accent-black rounded-none relative top-[0.25em]"
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
       />

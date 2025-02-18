@@ -10,21 +10,21 @@ export const DateSection = ({ center = false }: DateSectionProps) => {
   const { dateAddress: address, dateLink: link, dateLinkLabel } = useContent();
   return (
     <>
-      <div className="flex flex-col">
-        <Label className="z-10 -bottom-[0.75em] mr-auto relative left-[2vw]">
+      <div className="flex flex-col items-center md:items-start">
+        <Label className="z-10 -bottom-[0.5em] md:-bottom-[0.75em] mr-auto relative left-[2vw]">
           Днюха Ночи
         </Label>
 
         <Label
           bold
           color="black"
-          className="text-[2em] md:text-[3em] mb-[0.5em]"
+          className="text-[1.9em] md:text-[3em] mb-[0.5em]"
         >
-          7 марта 18:00
+          7 МАРТА 18:00
         </Label>
 
         <div
-          className={`max-w-[10 em] relative text-[1.5em]/[1.2] md:text-[1.8em]/[1.2] left-[2vw]  text-black ${
+          className={`max-w-[10em] md:max-w-[10em] relative text-[1em]/[1] md:text-[1.8em]/[1.2] left-[2vw]  text-black ${
             center ? "text-center" : "text-left"
           }`}
         >
