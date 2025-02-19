@@ -186,85 +186,93 @@ export default function UserPage({ user, content }: Props) {
 
 const PageContent: React.FC = () => {
   return (
-    <div className="min-h-screen">
-      {/* Mobile */}
-      <div className="md:hidden text-[5vw] px-[1em]">
-        <div className="flex justify-center pt-[4em] pb-[0em]">
-          <Logo className="max-w-[60vw]" />
-        </div>
-        <div className="flex justify-center pb-[2em]">
-          <DateSection center />
-        </div>
-        <div className="flex items-center mb-[2em]">
-          <SeriesIntro className="relative -mr-[2em]" />
-          <Girl className="w-[40vw] flex-shrink-0" />
-        </div>
-        <div className="mb-[3em]">
-          <SeriesDescription />
-        </div>
-        <div className="mb-[2em]">
-          <VideoSection />
-        </div>
-        <div className="mb-[2em]">
-          <Schedule />
-        </div>
-        <div className="mb-[3em]">
-          <Graph />
-        </div>
-        <div>
-          <div className="relative flex">
-            <Boy className="absolute w-[13em] bottom-[1em] -left-[8em]" />
-            <div className="z-10 pl-[5em]">
-              <ClothingInfo className="mb-[1em]" />
+    <>
+      <div className="min-h-screen">
+        <div className="text-[5vw] px-[1em] md:text-[1.65vw] md:px-[3em]">
+          {/* Top Mobile */}
+          <div className="md:hidden">
+            <div className="flex justify-center pt-[4em] pb-[0em]">
+              <Logo className="max-w-[60vw]" />
+            </div>
+            <div className="flex justify-center pb-[2em]">
+              <DateSection center />
+            </div>
+            <div className="flex items-center mb-[2em]">
+              <SeriesIntro className="relative -mr-[2em]" />
+              <Girl className="w-[40vw] flex-shrink-0" />
+            </div>
+            <div className="mb-[3em]">
+              <SeriesDescription />
             </div>
           </div>
-          <PresentsInfo className="mb-[2em]" />
-          <DrinksSelector className="flex flex-col mb-[1em]" />
-          <GraffitiSelector className="relative flex flex-col mb-[1em] z-20" />
-        </div>
-        <div className="pb-[2em]">
-          <AttendanceForm />
+
+          {/* Top Desktop */}
+          <div className="flex-col hidden md:flex">
+            <div className="flex justify-between items-center py-[4em]">
+              <Logo className="w-[24em]" />
+              <DateSection />
+            </div>
+            <div className="flex items-center justify-between gap-[2em] mb-[4em]">
+              <div>
+                <SeriesIntro className="text-[1.3em]/[1.25] mb-[1.25em]" />
+                <SeriesDescription />
+              </div>
+              <Girl className="w-[22em] flex-shrink-0" />
+            </div>
+          </div>
+
+          {/* Video */}
+          <div className="mb-[2em]">
+            <VideoSection />
+          </div>
+
+          {/* Bottom Mobile */}
+          <div className="md:hidden">
+            <div className="mb-[2em]">
+              <Schedule />
+            </div>
+            <div className="mb-[3em]">
+              <Graph />
+            </div>
+            <div>
+              <div className="relative flex">
+                <Boy className="absolute w-[13em] bottom-[1em] -left-[8em]" />
+                <div className="z-10 pl-[5em]">
+                  <ClothingInfo className="mb-[1em]" />
+                </div>
+              </div>
+              <PresentsInfo className="mb-[2em]" />
+              <DrinksSelector className="flex flex-col mb-[1em]" />
+              <GraffitiSelector className="relative flex flex-col mb-[1em] z-20" />
+            </div>
+            <div className="pb-[2em]">
+              <AttendanceForm />
+            </div>
+          </div>
+
+          {/* Bottom Desktop */}
+          <div className="hidden md:block">
+            <div className="flex justify-center mb-[3em]">
+              <Schedule className="max-w-[50vw]" />
+            </div>
+            <div className="max-w-[80%] m-auto">
+              <Graph />
+            </div>
+            <div className="flex items-end gap-8">
+              <Boy className="-ml-[3em] w-[120em]" />
+              <div>
+                <ClothingInfo className="mb-[0.5em]" />
+                <PresentsInfo className="mb-[1em]" />
+                <DrinksSelector className="flex flex-col mb-[2em]" />
+                <GraffitiSelector className="flex flex-col mb-[1em]" />
+              </div>
+            </div>
+            <div className="pb-[4em]">
+              <AttendanceForm />
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* Desktop */}
-      <div className="hidden md:block text-[1.65vw] px-[3em]">
-        <div className="flex justify-between items-center py-[4em]">
-          <Logo className="w-[24em]" />
-          <DateSection />
-        </div>
-        <div className="flex items-center justify-between gap-[2em] mb-[4em]">
-          <div>
-            <SeriesIntro className="text-[1.3em]/[1.25] mb-[1.25em]" />
-            <SeriesDescription />
-          </div>
-          <Girl className="w-[22em] flex-shrink-0" />
-        </div>
-        <div className="flex flex-col gap-8 mb-[1.35em] items-center">
-          <div className="flex justify-center">
-            <VideoSection className="w-[70vw] mb-[2em]" />
-          </div>
-          <div className="max-w-[50vw]">
-            <Schedule />
-          </div>
-        </div>
-
-        <div className="max-w-[80%] m-auto mb-[2em]">
-          <Graph />
-        </div>
-        <div className="flex items-end gap-8">
-          <Boy className="-ml-[3em] w-[120em]" />
-          <div>
-            <ClothingInfo className="mb-[0.5em]" />
-            <PresentsInfo className="mb-[1em]" />
-            <DrinksSelector className="flex flex-col mb-[2em]" />
-            <GraffitiSelector className="flex flex-col mb-[1em]" />
-          </div>
-        </div>
-        <div className="pb-[4em]">
-          <AttendanceForm />
-        </div>
-      </div>
-    </div>
+    </>
   );
 };

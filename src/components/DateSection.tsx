@@ -32,7 +32,7 @@ export const DateSection = ({ center = false }: DateSectionProps) => {
             <div key={index}>{line}</div>
           ))}
           {link && (
-            <a href={link} className="text-[#F75816] underline">
+            <a href={link} className="text-[#F75816] underline" target="_blank">
               {dateLinkLabel || link}
             </a>
           )}

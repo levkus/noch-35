@@ -26,6 +26,7 @@ export const PresentsInfo = ({ className }: PresentsInfoProps) => {
           <a
             href={wishlistLink}
             className="text-[#F75816] text-[1.5em] font-bold underline"
+            target="_blank"
           >
             {wishlistLinkLabel || "Вишлист тут"}
           </a>
