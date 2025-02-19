@@ -18,7 +18,7 @@ export const DateSection = ({ center = false }: DateSectionProps) => {
         <Label
           bold
           color="black"
-          className="text-[1.9em] md:text-[3em] mb-[0.5em]"
+          className="text-[8vw] md:text-[3em] mb-[0.5em]"
         >
           7 МАРТА 18:00
         </Label>
