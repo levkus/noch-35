@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Input, Button } from "./ui";
+import toast from "react-hot-toast";
 
 interface AllowedSlug {
   id: string;
@@ -72,8 +73,8 @@ export function AllowedSlugs({ initialSlugs }: AllowedSlugsProps) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow p-6">
-      <h1 className="text-2xl font-bold mb-6">Allowed Slugs</h1>
+    <div className="p-6 bg-white rounded-lg shadow">
+      <h1 className="mb-6 text-2xl font-bold">Allowed Slugs</h1>
       <div className="space-y-4">
         <div>
           <div className="flex gap-2">
@@ -92,12 +93,23 @@ export function AllowedSlugs({ initialSlugs }: AllowedSlugsProps) {
           {slugs.map((slug) => (
             <li
               key={slug.id}
-              className="flex items-center justify-between p-2 bg-gray-50 rounded"
+              className="flex items-center justify-between p-2 rounded bg-gray-50"
             >
               <span>{slug.slug}</span>
-              <Button variant="danger" onClick={() => removeSlug(slug.id)}>
-                Remove
-              </Button>
+              <div className="flex gap-2">
+                <Button
+                  onClick={async () => {
+                    const url = `${window.location.origin}/${slug.slug}`;
+                    await navigator.clipboard.writeText(url);
+                    toast.success("Скопировано");
+                  }}
+                >
+                  Copy
+                </Button>
+                <Button variant="danger" onClick={() => removeSlug(slug.id)}>
+                  Remove
+                </Button>
+              </div>
             </li>
           ))}
         </ul>
