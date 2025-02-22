@@ -9,3 +9,4 @@ export { PresentsSection } from "./PresentsSection";
 export { DrinksSection } from "./DrinksSection";
 export { GraffitiSection } from "./GraffitiSection";
 export { AttendanceSection } from "./AttendanceSection";
+export { GuestsSection } from "./GuestsSection";
